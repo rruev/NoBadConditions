@@ -1,0 +1,48 @@
+/* =========================
+       FEATURES
+    ========================= */
+
+.features {
+    width: min(1080px, calc(100% - 40px));
+
+    margin: 0 auto;
+
+    padding: 82px 0 90px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 40px;
+
+    text-align: center;
+}
+
+.feature-icon {
+    width: 52px;
+    height: 52px;
+
+    margin: 0 auto 17px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #17342f;
+
+    color: var(--primary);
+
+    font-size: 1.35rem;
+}
+
+.feature h3 {
+    margin-bottom: 7px;
+
+    font-size: 1rem;
+}
+
+.feature p {
+    color: var(--text-muted);
+
+    font-size: 0.88rem;
+}

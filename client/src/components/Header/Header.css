@@ -1,0 +1,93 @@
+header {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    background: rgba(10, 17, 21, 0.55);
+    backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.nav {
+    width: min(1180px, calc(100% - 40px));
+    min-height: 72px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 1.2rem;
+    font-weight: 750;
+    letter-spacing: -0.02em;
+}
+
+.brand-mark {
+    width: 31px;
+    height: 25px;
+    position: relative;
+    display: inline-block;
+}
+
+.brand-mark::before,
+.brand-mark::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+}
+
+.brand-mark::before {
+    left: 0;
+    border-width: 0 15px 22px 15px;
+}
+
+.brand-mark::after {
+    left: 12px;
+    border-width: 0 10px 15px 10px;
+    border-bottom-color: rgba(255, 255, 255, 0.55);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+nav a {
+    color: rgba(255, 255, 255, 0.78);
+    text-decoration: none;
+
+    font-size: 0.93rem;
+    font-weight: 600;
+
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: white;
+}
+
+.login-button {
+    padding: 8px 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+}
