@@ -141,3 +141,12 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+tests/
+
+todo.md
+template.html
+
+.agents/
+.claude/
+.windsurf/
