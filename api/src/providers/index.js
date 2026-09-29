@@ -1,0 +1,1 @@
+export * as openMeteoProvider from "./weather/openMeteoProvider";
