@@ -1,3 +1,4 @@
+import { isValidCoordinates } from '../../utils/location.utils';
 import styles from './LocationFields.module.css';
 import { useEffect, useState } from 'react';
 export default function LocationFields({
@@ -18,7 +19,7 @@ export default function LocationFields({
 
         const [newLat, newLon] = event.target.value.split(',').map(v => parseFloat(v.trim()));
 
-        if (isNaN(newLat) || isNaN(newLon)) return;
+        if (!isValidCoordinates(newLat, newLon)) return;
 
         handleLocationChange(newLat, newLon);
     };
