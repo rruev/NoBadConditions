@@ -1,139 +1,47 @@
-import './SearchCrag.css';
+import styles from './SearchCrag.module.css';
+import { useState } from 'react';
+import Map from '../Map/Map';
+import LocationFields from '../LocationFields/LocationFields';
+import SearchField from '../SearchField/SearchField';
 
 export default function SearchCrag() {
+    const [showLocationFields, setShowLocationFields] = useState(true);
+    const [location, setLocation] = useState({lat: null, lon: null});
+
+    const toggleLocationFields = () => setShowLocationFields(prev => !prev);
+
+    const handleLocationChange = (lat, lon) => {
+        setLocation({ lat, lon });
+    }
+
     return (
-        <section className="search-card">
+        <section className={styles['search-card']}>
 
-            <div className="mode-switch">
+            <div className={styles['mode-switch']}>
 
-                <button className="mode-option active">
+                <button
+                    className={`${styles['mode-option']} ${showLocationFields ? styles.active : ''}`}
+                    onClick={toggleLocationFields}
+                >
                     ⌖ &nbsp; Find by location
                 </button>
 
-                <button className="mode-option">
-                    ◆ &nbsp; Choose existing crag
-                </button>
-
-            </div>
-
-
-            <div className="fields">
-
-                <div className="field">
-
-                    <label htmlFor="latitude">
-                        Latitude
-                    </label>
-
-                    <div className="input-wrap">
-
-                        <span>⌖</span>
-
-                        <input
-                            id="latitude"
-                            type="number"
-                            step="any"
-                            placeholder="e.g. 47.0722"
-                        />
-
-                    </div>
-
-                </div>
-
-
-                <div className="field">
-
-                    <label htmlFor="longitude">
-                        Longitude
-                    </label>
-
-                    <div className="input-wrap">
-
-                        <span>⌖</span>
-
-                        <input
-                            id="longitude"
-                            type="number"
-                            step="any"
-                            placeholder="e.g. 13.0550"
-                        />
-
-                    </div>
-
-                </div>
-
-
-                <div className="field">
-
-                    <label htmlFor="elevation">
-                        Elevation (m)
-                    </label>
-
-                    <div className="input-wrap">
-
-                        <span>△</span>
-
-                        <input
-                            id="elevation"
-                            type="number"
-                            step="1"
-                            placeholder="e.g. 1200"
-                        />
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            {/* <!--
-                    Temporary map.
-
-                    Later replace this div with:
-                    <div id="map"></div>
-
-                    and initialize Leaflet.
-      --> */}
-
-            <div
-                className="map"
-                aria-label="Map placeholder"
-            >
-
-                <div className="map-controls">
-
-                    <button type="button">
-                        +
-                    </button>
-
-                    <button type="button">
-                        −
-                    </button>
-
-                </div>
-
-
-                <div className="map-pin"></div>
-
-
                 <button
-                    className="map-toggle"
-                    type="button"
+                    className={`${styles['mode-option']} ${!showLocationFields ? styles.active : ''}`}
+                    onClick={toggleLocationFields}
                 >
-                    Satellite
+                    ⌖ &nbsp; Choose existing crag
                 </button>
-
-
-                <span className="map-attribution">
-                    Map preview · OpenStreetMap
-                </span>
 
             </div>
 
+
+            {showLocationFields ? <LocationFields {...location} handleLocationChange={handleLocationChange} /> : <SearchField />}
+
+            <Map location={location} handleLocationChange={handleLocationChange} />
 
             <button
-                className="submit"
+                className={styles.submit}
                 type="button"
             >
                 Show climbing conditions

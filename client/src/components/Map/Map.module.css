@@ -1,0 +1,14 @@
+.map {
+    position: relative;
+
+    height: 390px;
+
+    overflow: hidden;
+
+    margin-bottom: 20px;
+
+    border-radius: 12px;
+
+    border: 1px solid var(--border);
+
+}
