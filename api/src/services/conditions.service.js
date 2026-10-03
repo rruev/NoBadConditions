@@ -9,6 +9,6 @@ export const getConditionsByCragId = async (cragId) => {
 };
 
 export const getConditionsByLocation = async (lat, lon) => {
-    const result = await weatherService.getConditions(lat, lon);
+    const result = await weatherService.getWeatherData(lat, lon);
     return result;
 };
