@@ -1,18 +1,34 @@
 import { defaultPreferences } from './defaultPreferences.js';
 
 const calculateConditionScore = (weatherData, preferences=defaultPreferences) => {
-    const tempScore = calculateTempScore(weatherData.hourly[0].temperature, preferences);
-    const humidityScore = calculateHumidityScore(weatherData.hourly[0].humidity, preferences);
-
-    const score =
-        Math.pow(tempScore / 100, 0.6) *
-        Math.pow(humidityScore / 100, 0.4);
-
-    return {
-        overallScore: score * 100,
-        tempScore: tempScore,
-        humidityScore: humidityScore,
+    const results = {
+        ...weatherData,
+        average: null,
     };
+
+    weatherData.hourly.forEach((hour, index) => {
+        const tempScore = calculateTempScore(hour.temperature, preferences);
+        const humidityScore = calculateHumidityScore(hour.humidity, preferences);
+
+        const score =
+            Math.pow(tempScore / 100, 0.6) *
+            Math.pow(humidityScore / 100, 0.4);
+
+        results.hourly[index] = {
+            ...hour,
+            overallScore: score * 100,
+            tempScore: tempScore,
+            humidityScore: humidityScore,
+        };
+    });
+
+    results.average = {
+        overallScore: Object.values(results.hourly).reduce((sum, hour) => sum + hour.overallScore, 0) / Object.values(results.hourly).length,
+        tempScore: Object.values(results.hourly).reduce((sum, hour) => sum + hour.tempScore, 0) / Object.values(results.hourly).length,
+        humidityScore: Object.values(results.hourly).reduce((sum, hour) => sum + hour.humidityScore, 0) / Object.values(results.hourly).length,
+    };
+    
+    return results;
 };
 
 const calculateTempScore = (temp, preferences) => {
