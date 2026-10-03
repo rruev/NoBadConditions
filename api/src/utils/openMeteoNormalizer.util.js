@@ -48,10 +48,10 @@ const getHourlyData = (data) => {
         return {
             time: date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
             date: date.toLocaleDateString('en-GB'),
-            temperature_2m: data.hourly.temperature_2m[index].toFixed(1),
-            relative_humidity_2m: data.hourly.relative_humidity_2m[index].toFixed(1),
+            temperature: data.hourly.temperature_2m[index].toFixed(1),
+            humidity: data.hourly.relative_humidity_2m[index].toFixed(1),
             // dew_point_2m: weatherData.hourly.dew_point_2m[index].toFixed(1),
-            wind_speed_10m: data.hourly.wind_speed_10m[index].toFixed(1),
+            wind_speed: data.hourly.wind_speed_10m[index].toFixed(1),
             apparent_temperature: data.hourly.apparent_temperature[index].toFixed(1),
             precipitation_probability: data.hourly.precipitation_probability[index].toFixed(1),
             precipitation: data.hourly.precipitation[index].toFixed(1),
@@ -60,8 +60,8 @@ const getHourlyData = (data) => {
             snowfall: data.hourly.snowfall[index].toFixed(1),
             snow_depth: data.hourly.snow_depth[index].toFixed(1),
             cloud_cover: data.hourly.cloud_cover[index].toFixed(1),
-            wind_direction_10m: data.hourly.wind_direction_10m[index].toFixed(1),
-            wind_gusts_10m: data.hourly.wind_gusts_10m[index].toFixed(1),
+            wind_direction: data.hourly.wind_direction_10m[index].toFixed(1),
+            wind_gusts: data.hourly.wind_gusts_10m[index].toFixed(1),
         };
     });
     return hourlyData;
