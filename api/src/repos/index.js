@@ -1,0 +1,1 @@
+export * as publicCragRepo from './publicCrag.repo';

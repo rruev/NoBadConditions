@@ -50,7 +50,6 @@ const getHourlyData = (data) => {
             date: date.toLocaleDateString('en-GB'),
             temperature: data.hourly.temperature_2m[index].toFixed(1),
             humidity: data.hourly.relative_humidity_2m[index].toFixed(1),
-            // dew_point_2m: weatherData.hourly.dew_point_2m[index].toFixed(1),
             wind_speed: data.hourly.wind_speed_10m[index].toFixed(1),
             apparent_temperature: data.hourly.apparent_temperature[index].toFixed(1),
             precipitation_probability: data.hourly.precipitation_probability[index].toFixed(1),

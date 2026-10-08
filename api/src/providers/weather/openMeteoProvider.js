@@ -20,7 +20,7 @@ export const getWeatherData = async (lat, lon) => {
             "wind_direction_10m",
             "wind_gusts_10m"],
         timezone: "auto",
-        forecast_days: 1,
+        forecast_days: 3,
     };
     const url = process.env.OPEN_METEO_URL;
 
