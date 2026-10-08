@@ -1,0 +1,774 @@
+ .page {
+	min-height: calc(100vh - 70px);
+	padding: 112px 20px 76px;
+
+	background-color: var(--background);
+}
+
+.content {
+	width: min(1060px, 100%);
+	margin: 0 auto;
+}
+
+.backLink {
+	display: inline-flex;
+	align-items: center;
+	gap: 9px;
+
+	margin-bottom: 24px;
+
+	color: var(--text-muted);
+	font-size: 0.88rem;
+	font-weight: 650;
+	text-decoration: none;
+
+	transition: color 160ms ease;
+}
+
+.backLink:hover {
+	color: var(--text);
+}
+
+.backLink span {
+	color: var(--primary-hover);
+	font-size: 1.15rem;
+}
+
+.pageHeader {
+	position: static;
+	width: auto;
+	background: none;
+	backdrop-filter: none;
+	border-bottom: 0;
+
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 24px;
+
+	margin-bottom: 24px;
+}
+
+.eyebrow,
+.sectionEyebrow {
+	color: var(--text-muted);
+	font-size: 0.68rem;
+	font-weight: 750;
+}
+
+.eyebrow {
+	margin-bottom: 7px;
+}
+
+.pageHeader h1 {
+	color: var(--text);
+	font-size: 2.15rem;
+	font-weight: 760;
+	line-height: 1.15;
+}
+
+.location {
+	margin-top: 7px;
+
+	color: var(--text-muted);
+	font-size: 0.92rem;
+}
+
+.location span {
+	padding: 0 4px;
+	color: var(--primary);
+}
+
+.forecastRange {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+
+	padding-bottom: 4px;
+
+	color: #c2d0ce;
+	font-size: 0.78rem;
+	white-space: nowrap;
+}
+
+.liveDot {
+	width: 7px;
+	height: 7px;
+
+	border-radius: 50%;
+
+	background: #8bc99c;
+	box-shadow: 0 0 0 4px rgba(139, 201, 156, 0.12);
+}
+
+.rangeDivider {
+	width: 1px;
+	height: 14px;
+	margin: 0 2px;
+
+	background: var(--border);
+}
+
+.overview {
+	display: grid;
+	grid-template-columns: 1.1fr 0.9fr;
+
+	overflow: hidden;
+
+	border: 1px solid var(--border);
+	border-radius: var(--radius-md);
+
+	background: var(--surface);
+}
+
+.currentWeather {
+	padding: 22px 25px 20px;
+}
+
+.sectionEyebrow span {
+	padding: 0 3px;
+	color: var(--primary);
+}
+
+.currentCondition {
+	display: flex;
+	min-height: 82px;
+	align-items: center;
+	gap: 13px;
+}
+
+.sunIcon {
+	color: #f1c46e;
+	font-size: 2.7rem;
+	line-height: 1;
+}
+
+.currentTemperature {
+	color: var(--text);
+	font-size: 3rem;
+	font-weight: 650;
+	line-height: 1;
+}
+
+.currentTemperature span,
+.hourTemperature span {
+	font-size: 0.58em;
+	vertical-align: top;
+}
+
+.conditionText {
+	display: grid;
+	gap: 3px;
+	margin-left: 1px;
+}
+
+.conditionText strong {
+	color: #edf4f2;
+	font-size: 0.92rem;
+}
+
+.conditionText span {
+	color: var(--text-muted);
+	font-size: 0.79rem;
+}
+
+.weatherStats {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+
+	padding-top: 13px;
+
+	border-top: 1px solid rgba(145, 165, 167, 0.16);
+}
+
+.weatherStats div,
+.hourWeatherStats div {
+	display: grid;
+	gap: 2px;
+}
+
+.weatherStats div + div {
+	padding-left: 16px;
+	border-left: 1px solid rgba(145, 165, 167, 0.16);
+}
+
+.weatherStats span,
+.hourWeatherStats span {
+	color: var(--text-muted);
+	font-size: 0.72rem;
+}
+
+.weatherStats strong,
+.hourWeatherStats strong {
+	color: #e7efed;
+	font-size: 0.86rem;
+	font-weight: 700;
+}
+
+.weatherStats small {
+	margin-left: 3px;
+	color: #a7b8b6;
+	font-size: 0.68rem;
+	font-weight: 500;
+}
+
+.scoreOverview {
+	display: grid;
+	grid-template-columns: 1fr 1px 1fr;
+	align-items: stretch;
+
+	padding: 22px 17px 20px;
+
+	border-left: 1px solid var(--border);
+	background: rgba(9, 19, 23, 0.2);
+}
+
+.scoreMetric {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 3px;
+
+	text-align: center;
+}
+
+.metricValue {
+	margin: 2px 0;
+	font-size: 2.55rem;
+	font-weight: 760;
+	line-height: 1;
+}
+
+.metricValue span,
+.selectedScore strong span {
+	margin-left: 3px;
+	color: #91a5a7;
+	font-size: 0.82rem;
+	font-weight: 550;
+}
+
+.scoreMetric > strong {
+	color: #e9f1ef;
+	font-size: 0.82rem;
+}
+
+.metricNote {
+	color: var(--text-muted);
+	font-size: 0.72rem;
+}
+
+.metricDivider {
+	width: 1px;
+	background: rgba(145, 165, 167, 0.2);
+}
+
+.chartSection {
+	margin-top: 22px;
+	padding: 21px 24px 18px;
+
+	border: 1px solid var(--border);
+	border-radius: var(--radius-md);
+
+	background: var(--surface);
+}
+
+.chartHeader {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 18px;
+}
+
+.chartHeader h2,
+.detailsHeader h2 {
+	margin-top: 3px;
+
+	color: var(--text);
+	font-size: 1.16rem;
+	font-weight: 700;
+}
+
+.scoreLegend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 14px;
+
+	color: var(--text-muted);
+	font-size: 0.69rem;
+}
+
+.scoreLegend span {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.scoreLegend i {
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+}
+
+.legendExcellent {
+	background: #8dd3ad;
+}
+
+.legendGood {
+	background: #c6cd79;
+}
+
+.legendFair {
+	background: #edc36f;
+}
+
+.chart {
+	display: grid;
+	grid-template-columns: 25px minmax(0, 1fr);
+	gap: 8px;
+
+	margin-top: 16px;
+}
+
+.axisLabels {
+	display: flex;
+	height: 150px;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 0 0 1px;
+
+	color: #708587;
+	font-size: 0.62rem;
+	text-align: right;
+}
+
+.hourlyBars {
+	display: grid;
+	grid-template-columns: repeat(24, minmax(0, 1fr));
+	gap: clamp(3px, 0.8vw, 10px);
+}
+
+.hourButton {
+	position: relative;
+
+	display: flex;
+	min-width: 0;
+	flex-direction: column;
+	align-items: center;
+	gap: 7px;
+
+	border: 0;
+	padding: 0 1px;
+
+	background: transparent;
+	color: inherit;
+	font: inherit;
+
+	cursor: pointer;
+}
+
+.hourButton:focus-visible {
+	outline: 2px solid var(--primary-hover);
+	outline-offset: 3px;
+	border-radius: 5px;
+}
+
+.barTrack {
+	position: relative;
+
+	display: block;
+	width: 100%;
+	height: 150px;
+
+	border-bottom: 1px solid rgba(145, 165, 167, 0.28);
+
+	background: repeating-linear-gradient(
+		to bottom,
+		rgba(145, 165, 167, 0.11) 0,
+		rgba(145, 165, 167, 0.11) 1px,
+		transparent 1px,
+		transparent 33.333%
+	);
+}
+
+.scoreBar {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+
+	width: min(28px, 76%);
+	min-width: 7px;
+
+	border-radius: 4px 4px 1px 1px;
+
+	transform: translateX(-50%);
+	transform-origin: bottom;
+	transition: filter 160ms ease, width 160ms ease;
+}
+
+.hourButton:hover .scoreBar,
+.selectedHour .scoreBar {
+	filter: brightness(1.12);
+}
+
+.selectedHour .scoreBar {
+	width: min(32px, 88%);
+	box-shadow: 0 0 14px rgba(141, 211, 173, 0.2);
+}
+
+.excellentBar {
+	background: #8dd3ad;
+}
+
+.goodBar {
+	background: #c6cd79;
+}
+
+.fairBar {
+	background: #edc36f;
+}
+
+.lowBar {
+	background: #d98272;
+}
+
+.scoreTooltip {
+	position: absolute;
+	bottom: calc(var(--score-height) + 7px);
+	left: 50%;
+	z-index: 2;
+
+	min-width: 31px;
+	padding: 3px 5px;
+
+	border: 1px solid rgba(145, 165, 167, 0.2);
+	border-radius: 5px;
+
+	background: #0b1519;
+
+	font-size: 0.7rem;
+	font-weight: 750;
+	text-align: center;
+
+	opacity: 0;
+	pointer-events: none;
+	transform: translate(-50%, 3px);
+	transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.hourButton:hover .scoreTooltip,
+.hourButton:focus-visible .scoreTooltip,
+.selectedHour .scoreTooltip {
+	opacity: 1;
+	transform: translate(-50%, 0);
+}
+
+.hourLabel {
+	color: #93a8a7;
+	font-size: 0.68rem;
+	line-height: 1;
+}
+
+.selectedHour .hourLabel {
+	color: #e6f0ec;
+	font-weight: 750;
+}
+
+.excellent {
+	color: #8dd3ad;
+}
+
+.good {
+	color: #c6cd79;
+}
+
+.fair {
+	color: #edc36f;
+}
+
+.low {
+	color: #d98272;
+}
+
+.hourDetails {
+	margin-top: 22px;
+	padding: 22px 24px 24px;
+
+	border: 1px solid var(--border);
+	border-radius: var(--radius-md);
+
+	background: var(--surface);
+}
+
+.detailsHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 15px;
+}
+
+.detailsHeader h2 {
+	font-size: 1.25rem;
+}
+
+.conditionBadge {
+	padding: 5px 10px;
+
+	border: 1px solid currentColor;
+	border-radius: 999px;
+
+	background: rgba(255, 255, 255, 0.035);
+	font-size: 0.74rem;
+	font-weight: 650;
+}
+
+.hourSummary {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+
+	padding: 17px 0;
+	margin-top: 14px;
+
+	border-top: 1px solid rgba(145, 165, 167, 0.15);
+	border-bottom: 1px solid rgba(145, 165, 167, 0.15);
+}
+
+.hourWeather {
+	display: flex;
+	align-items: center;
+	gap: 27px;
+}
+
+.hourTemperature {
+	color: #f1c46e;
+	font-size: 2.2rem;
+	font-weight: 650;
+	line-height: 1;
+	white-space: nowrap;
+}
+
+.hourWeatherStats {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 21px;
+}
+
+.selectedScore {
+	display: grid;
+	justify-items: end;
+	gap: 3px;
+}
+
+.selectedScore strong {
+	font-size: 1.55rem;
+	line-height: 1.1;
+}
+
+.factorSection {
+	padding-top: 18px;
+}
+
+.factorHeading {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 12px;
+
+	margin-bottom: 14px;
+}
+
+.factorHeading h3 {
+	color: #eaf1ef;
+	font-size: 0.9rem;
+	font-weight: 700;
+}
+
+.factorHeading span {
+	color: var(--text-muted);
+	font-size: 0.72rem;
+}
+
+.factorGrid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 18px;
+}
+
+.factorLabel {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+
+	margin-bottom: 8px;
+
+	color: #b2c2bf;
+	font-size: 0.76rem;
+}
+
+.factorLabel strong {
+	color: #e7efed;
+	font-size: 0.75rem;
+}
+
+.factorLabel small {
+	color: var(--text-muted);
+	font-size: 0.65rem;
+	font-weight: 500;
+}
+
+.factorTrack {
+	height: 5px;
+	overflow: hidden;
+
+	border-radius: 99px;
+
+	background: #26373b;
+}
+
+.factorFill {
+	display: block;
+	height: 100%;
+	border-radius: inherit;
+	transition: width 240ms ease;
+}
+
+.temperatureFactor {
+	background: #e6b663;
+}
+
+.humidityFactor {
+	background: #66bcae;
+}
+
+.windFactor {
+	background: #82b9dd;
+}
+
+.precipitationFactor {
+	background: #94c888;
+}
+
+@media (max-width: 760px) {
+	.pageHeader {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 13px;
+	}
+
+	.forecastRange {
+		padding-bottom: 0;
+	}
+
+	.overview {
+		grid-template-columns: 1fr;
+	}
+
+	.scoreOverview {
+		min-height: 160px;
+		border-top: 1px solid var(--border);
+		border-left: 0;
+	}
+
+	.factorGrid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		row-gap: 16px;
+	}
+}
+
+@media (max-width: 520px) {
+	.page {
+		padding: 96px 14px 55px;
+	}
+
+	.pageHeader h1 {
+		font-size: 1.85rem;
+	}
+
+	.overview,
+	.chartSection,
+	.hourDetails {
+		border-radius: 8px;
+	}
+
+	.currentWeather {
+		padding: 18px 16px;
+	}
+
+	.scoreOverview {
+		padding: 18px 8px;
+	}
+
+	.metricValue {
+		font-size: 2.15rem;
+	}
+
+	.chartSection {
+		padding: 18px 12px 15px;
+	}
+
+	.chartHeader {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 11px;
+	}
+
+	.scoreLegend {
+		gap: 10px;
+	}
+
+	.chart {
+		grid-template-columns: 21px minmax(0, 1fr);
+		gap: 4px;
+	}
+
+	.hourlyBars {
+		gap: 2px;
+	}
+
+	.hourLabel {
+		font-size: 0.6rem;
+	}
+
+	.hourDetails {
+		padding: 18px 16px;
+	}
+
+	.hourSummary {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+
+	.hourWeather {
+		width: 100%;
+		justify-content: space-between;
+		gap: 12px;
+	}
+
+	.hourWeatherStats {
+		justify-content: flex-end;
+		gap: 12px;
+	}
+
+	.hourWeatherStats div {
+		min-width: 58px;
+	}
+
+	.selectedScore {
+		display: flex;
+		width: 100%;
+		align-items: baseline;
+		justify-content: space-between;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.backLink,
+	.scoreBar,
+	.scoreTooltip,
+	.factorFill {
+		transition: none;
+	}
+}

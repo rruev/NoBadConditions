@@ -2,7 +2,7 @@ import styles from './SearchField.module.css';
 import { usePublicCrags } from '../../hooks/usePublicCrags';
 import { useEffect, useState } from 'react';
 
-export default function SearchField() {
+export default function SearchField({ handleSelectCrag }) {
     const { fetchPublicCrags, loading, error } = usePublicCrags();
     const [publicCrags, setPublicCrags] = useState([]);
 
@@ -18,7 +18,6 @@ export default function SearchField() {
         const data = await fetchPublicCrags(e.target.value);
         setPublicCrags(data);
     }
-
 
     return (
         <div className={styles.searchContainer}>
@@ -54,14 +53,19 @@ export default function SearchField() {
                         </div>
 
                         {publicCrags.map(crag => (
-                            <div key={crag.id} className={styles.resultItem}>
+                            <button
+                                key={crag.id}
+                                type="button"
+                                className={styles.resultItem}
+                                onClick={(e) => { e.currentTarget.blur(); handleSelectCrag(crag.latitude, crag.longitude); }}
+                            >
                                 <span className={styles.resultMarker}>⌖</span>
                                 <span className={styles.resultDetails}>
                                     <strong>{crag.name}</strong>
                                     {/* <span>{crag.location}</span> */}
                                 </span>
                                 {/* <span className={styles.resultDistance}>{crag.distance} mi</span> */}
-                            </div>
+                            </button>
                         ))}
                     </>
                 }

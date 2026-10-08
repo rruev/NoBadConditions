@@ -146,6 +146,7 @@ tests/
 
 todo.md
 template.html
+result.html
 
 .agents/
 .claude/

@@ -8,7 +8,7 @@ export default function Header() {
 
                 <a href="#" className="brand">
                     <span className="brand-mark"></span>
-                    Crag Conditions
+                    NoBadConditions
                 </a>
 
                 <nav>

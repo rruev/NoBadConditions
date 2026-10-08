@@ -135,13 +135,33 @@
 
 .resultItem {
     display: flex;
+    width: 100%;
     min-height: 58px;
     align-items: center;
     gap: 11px;
 
     padding: 8px;
 
+    border: 0;
     border-top: 1px solid rgba(87, 117, 117, 0.2);
+    border-radius: 6px;
+
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+
+    transition: background-color 150ms ease;
+}
+
+.resultItem:hover {
+    background: rgba(131, 199, 180, 0.12);
+}
+
+.resultItem:focus-visible {
+    outline: 2px solid #83c7b4;
+    outline-offset: -2px;
 }
 
 .resultMarker {
