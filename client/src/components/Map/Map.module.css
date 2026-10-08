@@ -1,6 +1,8 @@
 .map {
     position: relative;
 
+    z-index: 1;
+
     height: 390px;
 
     overflow: hidden;

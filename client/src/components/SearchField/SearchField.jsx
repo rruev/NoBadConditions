@@ -1,6 +1,25 @@
 import styles from './SearchField.module.css';
+import { usePublicCrags } from '../../hooks/usePublicCrags';
+import { useEffect, useState } from 'react';
 
 export default function SearchField() {
+    const { fetchPublicCrags, loading, error } = usePublicCrags();
+    const [publicCrags, setPublicCrags] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await fetchPublicCrags();
+            setPublicCrags(data);
+        };
+        fetchData();
+    }, []);
+
+    const handleSearchChange = async (e) => {
+        const data = await fetchPublicCrags(e.target.value);
+        setPublicCrags(data);
+    }
+
+
     return (
         <div className={styles.searchContainer}>
 
@@ -19,10 +38,34 @@ export default function SearchField() {
                     type="text"
                     placeholder="Search by crag name..."
                     autoComplete="off"
+                    onChange={handleSearchChange}
                 />
 
             </div>
 
+            <div className={styles.resultsPanel} aria-live="polite">
+                {loading ?
+                    <div>Loading...</div>
+                    :
+                    <>
+                        <div className={styles.resultsHeading}>
+                            <span>Matching crags</span>
+                            <span className={styles.resultCount}>{publicCrags.length}</span>
+                        </div>
+
+                        {publicCrags.map(crag => (
+                            <div key={crag.id} className={styles.resultItem}>
+                                <span className={styles.resultMarker}>⌖</span>
+                                <span className={styles.resultDetails}>
+                                    <strong>{crag.name}</strong>
+                                    {/* <span>{crag.location}</span> */}
+                                </span>
+                                {/* <span className={styles.resultDistance}>{crag.distance} mi</span> */}
+                            </div>
+                        ))}
+                    </>
+                }
+            </div>
         </div>
     );
 }
