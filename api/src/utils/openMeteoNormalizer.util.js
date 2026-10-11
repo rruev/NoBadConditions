@@ -4,6 +4,8 @@ export const normalizeWeatherData = (response) => {
     const elevation = response.elevation();
     const timezone = response.timezone();
     const utcOffsetSeconds = response.utcOffsetSeconds();
+    const daily = response.daily();
+    const current = response.current();
     const hourly = response.hourly();
 
     // Note: The order of weather variables in the URL query and the indices below need to match!
@@ -31,16 +33,44 @@ export const normalizeWeatherData = (response) => {
             wind_direction_10m: hourly.variables(11).valuesArray(),
             wind_gusts_10m: hourly.variables(12).valuesArray(),
         },
+        daily: {
+            time: Array.from(
+                { length: (Number(daily.timeEnd()) - Number(daily.time())) / daily.interval() },
+                (_, i) => new Date((Number(daily.time()) + i * daily.interval() + utcOffsetSeconds) * 1000)
+            ),
+            temperature_2m_max: daily.variables(0).valuesArray(),
+            temperature_2m_min: daily.variables(1).valuesArray(),
+        },
+        current: {
+            time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
+            temperature_2m: Number(current.variables(0).value().toFixed(1)),
+            relative_humidity_2m: Number(current.variables(1).value().toFixed(1)),
+            apparent_temperature: Number(current.variables(2).value().toFixed(1)),
+            precipitation: Number(current.variables(3).value().toFixed(1)),
+        },
     };
 
     const weatherData = {
         ...rawData,
         hourly: getHourlyData(rawData),
+        daily: getDailyData(rawData),
     };
 
     return weatherData;
 }
 
+const getDailyData = (data) => {
+    const dailyData = data.daily.time.map((time, index) => {
+        const date = new Date(time);
+        return {
+            time: date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
+            date: date.toLocaleDateString('en-GB'),
+            temperature_max: data.daily.temperature_2m_max[index].toFixed(1),
+            temperature_min: data.daily.temperature_2m_min[index].toFixed(1),
+        };
+    });
+    return dailyData;
+}
 
 const getHourlyData = (data) => {
     const hourlyData = data.hourly.time.map((time, index) => {

@@ -1,7 +1,8 @@
 import styles from './ResultHourDetails.module.css';
 import shared from '../../../styles/shared.module.css';
+import { getScoreLevel } from '../../../utils/results.util';
 
-export default function ResultHourDetails({ selectedHour, getScoreLevel, scoreFactors }) {
+export default function ResultHourDetails({ selectedHour, scoreFactors }) {
     return (
         <section className={styles.hourDetails} aria-live="polite" aria-labelledby="hour-details-title">
             <div className={styles.detailsHeader}>
@@ -9,8 +10,8 @@ export default function ResultHourDetails({ selectedHour, getScoreLevel, scoreFa
                     <p className={shared.sectionEyebrow}>SELECTED HOUR</p>
                     <h2 id="hour-details-title">{selectedHour.time}</h2>
                 </div>
-                <span className={`${styles.conditionBadge} ${styles[getScoreLevel(selectedHour.score)]}`}>
-                    {selectedHour.condition}
+                <span className={`${styles.conditionBadge} ${styles[getScoreLevel(selectedHour.overallScore)]}`}>
+                    {selectedHour.cloud_cover}
                 </span>
             </div>
 
@@ -19,13 +20,13 @@ export default function ResultHourDetails({ selectedHour, getScoreLevel, scoreFa
                     <div className={styles.hourTemperature}>{selectedHour.temperature}<span>°</span></div>
                     <div className={styles.hourWeatherStats}>
                         <div><span>Humidity</span><strong>{selectedHour.humidity}%</strong></div>
-                        <div><span>Wind</span><strong>{selectedHour.wind} mph</strong></div>
+                        <div><span>Wind</span><strong>{selectedHour.wind_speed} km/h</strong></div>
                         <div><span>Precipitation</span><strong>{selectedHour.precipitation}%</strong></div>
                     </div>
                 </div>
                 <div className={styles.selectedScore}>
                     <span className={shared.sectionEyebrow}>CLIMBING SCORE</span>
-                    <strong className={styles[getScoreLevel(selectedHour.score)]}>{selectedHour.score}<span>/100</span></strong>
+                    <strong className={styles[getScoreLevel(selectedHour.overallScore)]}>{selectedHour.overallScore}<span>/100</span></strong>
                 </div>
             </div>
 
@@ -35,7 +36,7 @@ export default function ResultHourDetails({ selectedHour, getScoreLevel, scoreFa
                     <span>Impact by condition</span>
                 </div>
                 <div className={styles.factorGrid}>
-                    {scoreFactors.map(factor => {
+                    {/* {scoreFactors.map(factor => {
                         const score = selectedHour.factors[factor.key];
 
                         return (
@@ -52,7 +53,7 @@ export default function ResultHourDetails({ selectedHour, getScoreLevel, scoreFa
                                 </div>
                             </div>
                         );
-                    })}
+                    })} */}
                 </div>
             </div>
         </section>

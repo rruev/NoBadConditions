@@ -8,3 +8,19 @@
 	padding: 0 3px;
 	color: var(--primary);
 }
+
+.excellent {
+	color: #8dd3ad;
+}
+
+.good {
+	color: #c6cd79;
+}
+
+.fair {
+	color: #edc36f;
+}
+
+.low {
+	color: #d98272;
+}

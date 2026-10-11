@@ -2,16 +2,16 @@ import styles from "./ResultOverview.module.css";
 import shared from "../../../styles/shared.module.css";
 import CurrentWeather from "../CurrentWeather/CurrentWeather";
 
-export default function ResultOverview({ bestHour, averageScore }) {
+export default function ResultOverview({ bestHour, averageScore, currentWeather }) {
     return (
         <section className={styles.overview} aria-label="Current weather and 12-hour scores">
             <div className={styles.currentWeather} >
                 <p className={shared.sectionEyebrow}>CURRENT WEATHER <span>·</span> 10:15 AM</p>
-                <CurrentWeather />
+                <CurrentWeather currentWeather={currentWeather} />
             </div>
             
 
-            <div className={styles.scoreOverview}>
+            {/* <div className={styles.scoreOverview}>
                 <div className={styles.scoreMetric} >
                     <p className={shared.sectionEyebrow}>BEST WINDOW</p>
                     <div className={`${styles.metricValue} ${styles.excellentText}`}>
@@ -29,7 +29,7 @@ export default function ResultOverview({ bestHour, averageScore }) {
                     <strong>Today</strong>
                     <span className={styles.metricNote}>08:00–19:00 climbing window</span>
                 </div>
-            </div>
+            </div> */}
         </section >
     );
 }

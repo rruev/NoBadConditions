@@ -1,11 +1,8 @@
 .chartSection {
-    margin-top: 22px;
-    padding: 21px 24px 18px;
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-
-    background: var(--surface);
+	margin-top: 22px;
+	border: 1px solid var(--border);
+	border-radius: var(--radius-md);
+	background: var(--surface);
 }
 
 .chartHeader {
@@ -13,6 +10,7 @@
 	align-items: flex-end;
 	justify-content: space-between;
 	gap: 18px;
+	padding: 21px 24px 18px;
 }
 
 .chartHeader h2,
@@ -117,13 +115,11 @@
 
 	border-bottom: 1px solid rgba(145, 165, 167, 0.28);
 
-	background: repeating-linear-gradient(
-		to bottom,
-		rgba(145, 165, 167, 0.11) 0,
-		rgba(145, 165, 167, 0.11) 1px,
-		transparent 1px,
-		transparent 33.333%
-	);
+	background: repeating-linear-gradient(to bottom,
+			rgba(145, 165, 167, 0.11) 0,
+			rgba(145, 165, 167, 0.11) 1px,
+			transparent 1px,
+			transparent 33.333%);
 }
 
 .scoreBar {
@@ -268,4 +264,56 @@
 	.hourLabel {
 		font-size: 0.6rem;
 	}
+}
+
+.dayNav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+
+	margin-top: 16px;
+}
+
+.dayInfo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	color: var(--text);
+	font-size: 0.95rem;
+}
+
+.dayInfo span {
+	color: var(--text-muted);
+	font-size: 0.72rem;
+}
+
+.dayArrow {
+	width: 40px;
+	height: 40px;
+
+	border: 1px solid var(--border);
+	border-radius: 50%;
+
+	background: var(--surface-light);
+	color: var(--text);
+	font-size: 1.4rem;
+	line-height: 1;
+
+	cursor: pointer;
+}
+
+.dayArrow:hover:not(:disabled) {
+	border-color: var(--primary);
+}
+
+.dayArrow:disabled {
+	opacity: 0.35;
+	cursor: not-allowed;
+}
+
+.dayArrow:focus-visible {
+	outline: 2px solid var(--primary-hover);
+	outline-offset: 2px;
 }

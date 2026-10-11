@@ -16,17 +16,11 @@ const calculateConditionScore = (weatherData, preferences=defaultPreferences) =>
 
         results.hourly[index] = {
             ...hour,
-            overallScore: score * 100,
-            tempScore: tempScore,
-            humidityScore: humidityScore,
+            overallScore: (score * 100).toFixed(0),
+            tempScore: tempScore.toFixed(0),
+            humidityScore: humidityScore.toFixed(0),
         };
     });
-
-    results.average = {
-        overallScore: Object.values(results.hourly).reduce((sum, hour) => sum + hour.overallScore, 0) / Object.values(results.hourly).length,
-        tempScore: Object.values(results.hourly).reduce((sum, hour) => sum + hour.tempScore, 0) / Object.values(results.hourly).length,
-        humidityScore: Object.values(results.hourly).reduce((sum, hour) => sum + hour.humidityScore, 0) / Object.values(results.hourly).length,
-    };
     
     return results;
 };

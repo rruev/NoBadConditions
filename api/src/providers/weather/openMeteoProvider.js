@@ -5,6 +5,10 @@ export const getWeatherData = async (lat, lon) => {
     const params = {
         latitude: lat,
         longitude: lon,
+        daily: [
+            "temperature_2m_max", 
+            "temperature_2m_min"
+        ],
         hourly: [
             "temperature_2m",
             "relative_humidity_2m",
@@ -19,6 +23,7 @@ export const getWeatherData = async (lat, lon) => {
             "cloud_cover",
             "wind_direction_10m",
             "wind_gusts_10m"],
+        current: ["temperature_2m", "relative_humidity_2m", "apparent_temperature", "precipitation"],
         timezone: "auto",
         forecast_days: 3,
     };
