@@ -1,0 +1,18 @@
+.footer {
+    padding: 25px 20px;
+
+    border-top: 1px solid var(--border);
+
+    text-align: center;
+
+    color: #60747a;
+
+    font-size: 0.78rem;
+}
+
+@media (max-width: 560px) {
+    .footer {
+        padding: 20px 14px calc(20px + env(safe-area-inset-bottom));
+        line-height: 1.6;
+    }
+}

@@ -212,6 +212,21 @@
     white-space: nowrap;
 }
 
+@media (max-width: 560px) {
+    .inputWrap input {
+        height: 50px;
+        font-size: 16px; /* prevents iOS zoom on focus */
+    }
+
+    .resultsPanel {
+        max-height: 260px;
+    }
+
+    .resultItem {
+        min-height: 52px;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .resultsPanel {
         transition: none;

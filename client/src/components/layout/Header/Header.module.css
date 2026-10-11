@@ -1,4 +1,4 @@
-header {
+.header {
     position: absolute;
     z-index: 10;
     top: 0;
@@ -40,6 +40,7 @@ header {
 .brand-mark {
     width: 31px;
     height: 25px;
+    flex-shrink: 0;
     position: relative;
     display: inline-block;
 }
@@ -65,13 +66,13 @@ header {
     border-bottom-color: rgba(255, 255, 255, 0.55);
 }
 
-nav {
+.links {
     display: flex;
     align-items: center;
     gap: 32px;
 }
 
-nav a {
+.link {
     color: rgba(255, 255, 255, 0.78);
     text-decoration: none;
 
@@ -81,13 +82,46 @@ nav a {
     transition: color 0.2s ease;
 }
 
-nav a:hover {
+.link:hover {
     color: white;
 }
 
 .login-button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+
     padding: 8px 18px;
 
     border: 1px solid rgba(255, 255, 255, 0.35);
     border-radius: 999px;
+}
+
+.brand:focus-visible,
+.link:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+@media (max-width: 800px) {
+    .links {
+        gap: 16px;
+    }
+
+    .link:not(.login-button) {
+        display: none;
+    }
+}
+
+@media (max-width: 560px) {
+    .nav {
+        width: calc(100% - 28px);
+        min-height: 64px;
+        gap: 12px;
+    }
+
+    .brand {
+        gap: 9px;
+        font-size: 1.05rem;
+    }
 }

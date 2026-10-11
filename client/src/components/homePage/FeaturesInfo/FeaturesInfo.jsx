@@ -1,80 +1,38 @@
-import './FeaturesInfo.css';
+import styles from './FeaturesInfo.module.css';
+
+const features = [
+    {
+        icon: '☀',
+        title: 'Weather data',
+        text: 'Up-to-date weather information for your climbing location.',
+    },
+    {
+        icon: '⌁',
+        title: 'Smart conditions',
+        text: 'Multiple weather factors combined into one useful score.',
+    },
+    {
+        icon: '⌖',
+        title: 'Explore crags',
+        text: 'Choose from existing climbing areas or add your own.',
+    },
+    {
+        icon: '↗',
+        title: 'Best climbing time',
+        text: 'See which part of the day is most suitable for climbing.',
+    },
+];
 
 export default function FeaturesInfo() {
     return (
-        <section className="features">
-
-            <article className="feature">
-
-                <div className="feature-icon">
-                    ☀
-                </div>
-
-                <h3>
-                    Weather data
-                </h3>
-
-                <p>
-                    Up-to-date weather information
-                    for your climbing location.
-                </p>
-
-            </article>
-
-
-            <article className="feature">
-
-                <div className="feature-icon">
-                    ⌁
-                </div>
-
-                <h3>
-                    Smart conditions
-                </h3>
-
-                <p>
-                    Multiple weather factors combined
-                    into one useful score.
-                </p>
-
-            </article>
-
-
-            <article className="feature">
-
-                <div className="feature-icon">
-                    ⌖
-                </div>
-
-                <h3>
-                    Explore crags
-                </h3>
-
-                <p>
-                    Choose from existing climbing areas
-                    or add your own.
-                </p>
-
-            </article>
-
-
-            <article className="feature">
-
-                <div className="feature-icon">
-                    ↗
-                </div>
-
-                <h3>
-                    Best climbing time
-                </h3>
-
-                <p>
-                    See which part of the day is most
-                    suitable for climbing.
-                </p>
-
-            </article>
-
+        <section className={styles.features}>
+            {features.map(({ icon, title, text }) => (
+                <article key={title}>
+                    <div className={styles.icon} aria-hidden="true">{icon}</div>
+                    <h3 className={styles.title}>{title}</h3>
+                    <p className={styles.description}>{text}</p>
+                </article>
+            ))}
         </section>
     );
 }

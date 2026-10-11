@@ -1,18 +1,18 @@
-import './Hero.css';
+import styles from './Hero.module.css';
 
 export default function Hero() {
     return (
-        <section className="hero">
+        <section className={styles.hero}>
 
-            <div className="hero-content">
+            <div className={styles.content}>
 
-                <div className="hero-copy">
+                <div className={styles.copy}>
 
-                    <span className="eyebrow">
+                    <span className={styles.eyebrow}>
                         Climbing conditions
                     </span>
 
-                    <h1>
+                    <h1 className={styles.title}>
                         Better conditions.<br />
                         Better climbing.
                     </h1>

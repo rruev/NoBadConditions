@@ -86,11 +86,42 @@
 
     font-weight: 800;
 
-    cursor: default;
+    cursor: pointer;
 
     transition: background 0.2s ease;
 }
 
 .submit:hover {
     background: var(--primary-hover);
+}
+
+.submit:focus-visible {
+    outline: 2px solid var(--primary-hover);
+    outline-offset: 2px;
+}
+
+@media (max-width: 800px) {
+    .search-card {
+        margin-top: -25px;
+    }
+}
+
+@media (max-width: 560px) {
+    .search-card {
+        width: calc(100% - 28px);
+        padding: 17px;
+    }
+
+    .mode-switch {
+        grid-template-columns: 1fr;
+        margin-bottom: 18px;
+    }
+
+    .mode-option {
+        min-height: 48px;
+    }
+
+    .submit {
+        height: 54px;
+    }
 }
