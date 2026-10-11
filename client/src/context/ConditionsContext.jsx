@@ -13,12 +13,12 @@ export const ConditionsProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const fetchAndSetConditions = useCallback(async (lat, lon) => {
+    const fetchAndSetConditions = useCallback(async (lat, lon, cragName="") => {
         setLoading(true);
         setError(null);
         try {
             const data = await fetchConditions(lat, lon);
-            setConditions(data);
+            setConditions({...data, cragName: cragName});
         } catch (err) {
             setError(err);
         } finally {

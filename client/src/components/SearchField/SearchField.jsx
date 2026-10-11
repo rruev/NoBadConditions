@@ -57,7 +57,7 @@ export default function SearchField({ handleSelectCrag }) {
                                 key={crag.id}
                                 type="button"
                                 className={styles.resultItem}
-                                onClick={(e) => { e.currentTarget.blur(); handleSelectCrag(crag.latitude, crag.longitude); }}
+                                onClick={(e) => { e.currentTarget.blur(); handleSelectCrag(crag.latitude, crag.longitude, crag.name); }}
                             >
                                 <span className={styles.resultMarker}>⌖</span>
                                 <span className={styles.resultDetails}>

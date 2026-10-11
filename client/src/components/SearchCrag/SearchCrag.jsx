@@ -12,15 +12,17 @@ export default function SearchCrag() {
     const navigate = useNavigate();
     const [showLocationFields, setShowLocationFields] = useState(true);
     const [location, setLocation] = useState({ lat: null, lon: null });
+    const [cragName, setCragName] = useState('');
 
     const toggleLocationFields = () => setShowLocationFields(prev => !prev);
 
-    const handleLocationChange = (lat, lon) => {
+    const handleLocationChange = (lat, lon, cragName="") => {
         setLocation({ lat, lon });
+        setCragName(cragName);
     }
 
     const handleShowConditions = async () => {
-        await fetchAndSetConditions(location.lat, location.lon);
+        await fetchAndSetConditions(location.lat, location.lon, cragName);
         navigate('/result');
     }
 

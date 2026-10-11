@@ -2,6 +2,7 @@ import styles from './Result.module.css';
 import { useState } from 'react';
 import { Link } from 'react-router';
 import useConditions from '../../hooks/useConditions';
+import ResultHeader from '../ResultHeader/ResultHeader';
 
 const hourlyForecast = [
     { time: '00:00', shortTime: '00', score: 35, temperature: 43, condition: 'Clear night', humidity: 70, wind: 4, precipitation: 0, factors: { temperature: 42, humidity: 50, wind: 88, precipitation: 100 } },
@@ -62,19 +63,7 @@ export default function Result() {
                     Back to search
                 </Link>
 
-                <header className={styles.pageHeader}>
-                    <div>
-                        <p className={styles.eyebrow}>CRAG CONDITIONS · DEMO FORECAST</p>
-                        <h1>Boulder Canyon</h1>
-                        <p className={styles.location}>Boulder, Colorado <span aria-hidden="true">·</span> Today, October 8</p>
-                    </div>
-                    <div className={styles.forecastRange}>
-                        <span className={styles.liveDot} />
-                        <span>24-hour outlook</span>
-                        <span className={styles.rangeDivider} />
-                        <span>00:00 – 23:00</span>
-                    </div>
-                </header>
+                <ResultHeader name={conditions.cragName} location="Gmunden, Austria" />
 
                 <section className={styles.overview} aria-label="Current weather and 12-hour scores">
                     <div className={styles.currentWeather}>
