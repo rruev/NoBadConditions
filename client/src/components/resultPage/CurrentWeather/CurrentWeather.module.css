@@ -1,0 +1,81 @@
+.currentCondition {
+	display: flex;
+	min-height: 82px;
+	align-items: center;
+	gap: 13px;
+}
+
+.sunIcon {
+	color: #f1c46e;
+	font-size: 2.7rem;
+	line-height: 1;
+}
+
+.currentTemperature {
+	color: var(--text);
+	font-size: 3rem;
+	font-weight: 650;
+	line-height: 1;
+}
+
+.currentTemperature span,
+.hourTemperature span {
+	font-size: 0.58em;
+	vertical-align: top;
+}
+
+.conditionText {
+	display: grid;
+	gap: 3px;
+	margin-left: 1px;
+}
+
+.conditionText strong {
+	color: #edf4f2;
+	font-size: 0.92rem;
+}
+
+.conditionText span {
+	color: var(--text-muted);
+	font-size: 0.79rem;
+}
+
+.weatherStats {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+
+	padding-top: 13px;
+
+	border-top: 1px solid rgba(145, 165, 167, 0.16);
+}
+
+.weatherStats div,
+.hourWeatherStats div {
+	display: grid;
+	gap: 2px;
+}
+
+.weatherStats div + div {
+	padding-left: 16px;
+	border-left: 1px solid rgba(145, 165, 167, 0.16);
+}
+
+.weatherStats span,
+.hourWeatherStats span {
+	color: var(--text-muted);
+	font-size: 0.72rem;
+}
+
+.weatherStats strong,
+.hourWeatherStats strong {
+	color: #e7efed;
+	font-size: 0.86rem;
+	font-weight: 700;
+}
+
+.weatherStats small {
+	margin-left: 3px;
+	color: #a7b8b6;
+	font-size: 0.68rem;
+	font-weight: 500;
+}

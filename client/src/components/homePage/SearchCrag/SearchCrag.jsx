@@ -5,7 +5,7 @@ import Map from '../Map/Map';
 import LocationFields from '../LocationFields/LocationFields';
 import SearchField from '../SearchField/SearchField';
 
-import useConditions from '../../hooks/useConditions';
+import useConditions from '../../../hooks/useConditions';
 
 export default function SearchCrag() {
     const { fetchAndSetConditions } = useConditions();

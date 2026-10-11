@@ -1,10 +1,10 @@
 import './App.css'
 import { Routes, Route } from 'react-router';
 
-import Header from './components/Header/Header.jsx';
-import Footer from './components/Footer/Footer.jsx';
-import Home from './components/Home/Home.jsx';
-import Result from './components/Result/Result.jsx';
+import Header from './components/layout/Header/Header.jsx';
+import Footer from './components/layout/Footer/Footer.jsx';
+import Home from './components/homePage/Home/Home.jsx';
+import Result from './components/resultPage/Result/Result.jsx';
 
 function App() {
 

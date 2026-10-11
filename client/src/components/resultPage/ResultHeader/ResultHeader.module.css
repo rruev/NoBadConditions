@@ -68,3 +68,21 @@
 
 	background: var(--border);
 }
+
+@media (max-width: 760px) {
+	.pageHeader {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 13px;
+	}
+
+	.forecastRange {
+		padding-bottom: 0;
+	}
+}
+
+@media (max-width: 520px) {
+	.pageHeader h1 {
+		font-size: 1.85rem;
+	}
+}

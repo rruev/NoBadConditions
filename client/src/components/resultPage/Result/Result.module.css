@@ -1,0 +1,57 @@
+.page {
+	min-height: calc(100vh - 70px);
+	padding: 112px 20px 76px;
+
+	background-color: var(--background);
+}
+
+.content {
+	width: min(1060px, 100%);
+	margin: 0 auto;
+}
+
+.backLink {
+	display: inline-flex;
+	align-items: center;
+	gap: 9px;
+
+	margin-bottom: 24px;
+
+	color: var(--text-muted);
+	font-size: 0.88rem;
+	font-weight: 650;
+	text-decoration: none;
+
+	transition: color 160ms ease;
+}
+
+.backLink:hover {
+	color: var(--text);
+}
+
+.backLink span {
+	color: var(--primary-hover);
+	font-size: 1.15rem;
+}
+
+.selectedHour .hourLabel {
+	color: #e6f0ec;
+	font-weight: 750;
+}
+
+.excellent {
+	color: #8dd3ad;
+}
+
+.good {
+	color: #c6cd79;
+}
+
+.fair {
+	color: #edc36f;
+}
+
+.low {
+	color: #d98272;
+}
+

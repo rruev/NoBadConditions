@@ -1,4 +1,4 @@
-import { isValidCoordinates } from '../../utils/location.utils';
+import { isValidCoordinates } from '../../../utils/location.utils';
 import styles from './LocationFields.module.css';
 import { useEffect, useState } from 'react';
 export default function LocationFields({

@@ -1,0 +1,10 @@
+.sectionEyebrow {
+	color: var(--text-muted);
+	font-size: 0.68rem;
+	font-weight: 750;
+}
+
+.sectionEyebrow span {
+	padding: 0 3px;
+	color: var(--primary);
+}

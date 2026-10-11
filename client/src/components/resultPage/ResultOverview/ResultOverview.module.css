@@ -1,0 +1,104 @@
+.overview {
+	display: grid;
+	grid-template-columns: 1.1fr 0.9fr;
+
+	overflow: hidden;
+
+	border: 1px solid var(--border);
+	border-radius: var(--radius-md);
+
+	background: var(--surface);
+}
+
+.currentWeather {
+	padding: 22px 25px 20px;
+}
+
+.scoreOverview {
+	display: grid;
+	grid-template-columns: 1fr 1px 1fr;
+	align-items: stretch;
+
+	border-left: 1px solid var(--border);
+	background: rgba(9, 19, 23, 0.2);
+}
+
+.scoreMetric {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 3px;
+
+	text-align: center;
+}
+
+.metricValue {
+	margin: 2px 0;
+	font-size: 2.55rem;
+	font-weight: 760;
+	line-height: 1;
+}
+
+.metricValue span,
+.selectedScore strong span {
+	margin-left: 3px;
+	color: #91a5a7;
+	font-size: 0.82rem;
+	font-weight: 550;
+}
+
+.scoreMetric>strong {
+	color: #e9f1ef;
+	font-size: 0.82rem;
+}
+
+.metricNote {
+	color: var(--text-muted);
+	font-size: 0.72rem;
+}
+
+.metricDivider {
+	width: 1px;
+	background: rgba(145, 165, 167, 0.2);
+}
+
+@media (max-width: 760px) {
+	.pageHeader {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 13px;
+	}
+
+	.forecastRange {
+		padding-bottom: 0;
+	}
+
+	.overview {
+		grid-template-columns: 1fr;
+	}
+
+	.scoreOverview {
+		min-height: 160px;
+		border-top: 1px solid var(--border);
+		border-left: 0;
+	}
+}
+
+@media (max-width: 520px) {
+	.overview {
+		border-radius: 8px;
+	}
+
+	.currentWeather {
+		padding: 18px 16px;
+	}
+
+	.scoreOverview {
+		padding: 18px 8px;
+	}
+
+	.metricValue {
+		font-size: 2.15rem;
+	}
+}

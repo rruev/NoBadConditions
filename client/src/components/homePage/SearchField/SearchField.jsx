@@ -1,5 +1,5 @@
 import styles from './SearchField.module.css';
-import { usePublicCrags } from '../../hooks/usePublicCrags';
+import { usePublicCrags } from '../../../hooks/usePublicCrags';
 import { useEffect, useState } from 'react';
 
 export default function SearchField({ handleSelectCrag }) {
