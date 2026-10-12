@@ -5,6 +5,7 @@ import {
     TileLayer
 } from 'react-leaflet'
 import LocationMarker from './LocationMarker';
+import '../../../utils/leafletIcon.util';
 
 export default function Map({
     location,

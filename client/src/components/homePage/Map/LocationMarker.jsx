@@ -17,7 +17,7 @@ export default function LocationMarker({ lat, lon, handleLocationChange }) {
     return (
         (lat && lon) &&
         <Marker position={[lat, lon]}>
-            <Popup>You are here</Popup>
+            <Popup>Crag location</Popup>
         </Marker>
     )
 }
