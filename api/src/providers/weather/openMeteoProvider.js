@@ -25,11 +25,13 @@ export const getWeatherData = async (lat, lon) => {
             "wind_gusts_10m"],
         current: ["temperature_2m", "relative_humidity_2m", "apparent_temperature", "precipitation"],
         timezone: "auto",
-        forecast_days: 3,
+        forecast_days: 7,
     };
     const url = process.env.OPEN_METEO_URL;
 
     const responses = await fetchWeatherApi(url, params);
+    console.log(responses);
+    console.log(responses[0]);  
 
     return responses[0];
 };
