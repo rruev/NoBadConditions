@@ -1,5 +1,5 @@
 import { userService } from '../services/index.js';
-import { userLogInSchema, userRegisterSchema } from '../schemas/user.schema';
+import { userLogInSchema, userRegisterSchema } from '../schemas/user.schema.js';
 import { getErrors } from '../utils/errors.util.js';
 
 export const register = async (req, res) => {
