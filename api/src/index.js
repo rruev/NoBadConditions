@@ -15,6 +15,11 @@ app.use(cookieParser());
 app.use('/api/v1', router);
 
 const port = process.env.PORT || 3000;
+
+app.get("/", (req, res) => {
+    res.json({ message: "Weather API is running" });
+});
+
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
