@@ -1,5 +1,5 @@
-import { weatherService, conditionScoreService } from "../services";
-// import { cragService } from "../services";
+import { weatherService, conditionScoreService } from "../services/index.js";
+// import { cragService } from "../services/index.js";
 
 export const getConditionsByCragId = async (cragId) => {
     // const crag = await cragService.getCragById(cragId);

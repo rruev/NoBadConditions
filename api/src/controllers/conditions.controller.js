@@ -1,4 +1,4 @@
-import { conditionsService } from "../services/index";
+import { conditionsService } from "../services/index.js";
 
 export const getByLocation = async (req, res) => {
     const { lat, lon } = req.query;

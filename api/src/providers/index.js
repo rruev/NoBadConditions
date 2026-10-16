@@ -1,1 +1,1 @@
-export * as openMeteoProvider from "./weather/openMeteoProvider";
+export * as openMeteoProvider from "./weather/openMeteoProvider.js";

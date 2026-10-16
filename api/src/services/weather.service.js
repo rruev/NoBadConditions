@@ -1,5 +1,5 @@
-import { openMeteoProvider } from "../providers";
-import { normalizeWeatherData } from "../utils/openMeteoNormalizer.util";
+import { openMeteoProvider } from "../providers/index.js";
+import { normalizeWeatherData } from "../utils/openMeteoNormalizer.util.js";
 
 export const getWeatherData = async (lat, lon) => {
     const result = await openMeteoProvider.getWeatherData(lat, lon);

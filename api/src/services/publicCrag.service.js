@@ -1,4 +1,4 @@
-import { publicCragRepo } from '../repos';
+import { publicCragRepo } from '../repos/index.js';
 
 export const getAll = async (filter={}) => {
     filter.search = filter.search || '';

@@ -1,1 +1,1 @@
-export * as publicCragRepo from './publicCrag.repo';
+export * as publicCragRepo from './publicCrag.repo.js';
