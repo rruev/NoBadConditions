@@ -18,8 +18,9 @@ model User {
   password  String
   createdAt DateTime @default(now())
 
-  myCrags     Crag[]
-  preferences UserPreferences[]
+  myCrags       Crag[]
+  myActiveCrags ActiveCrag[]
+  preferences   UserPreferences[]
 
   @@map("users")
 }
@@ -44,19 +45,21 @@ model Crag {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 
-  user        User         @relation(fields: [userId], references: [id])
-  activeCrags ActiveCrag[]
+  user       User        @relation(fields: [userId], references: [id])
+  active ActiveCrag?
 
   @@map("crags")
 }
 
 model ActiveCrag {
   id        String   @id @default(cuid())
-  cragId    String
+  cragId    String   @unique
+  userId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 
-  crag Crag? @relation(fields: [cragId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+  crag Crag @relation(fields: [cragId], references: [id])
 
   @@map("active_crags")
 }
@@ -64,18 +67,18 @@ model ActiveCrag {
 model UserPreferences {
   id                       String   @id @default(cuid())
   userId                   String
-  ideal_temp_low           Int @default(3)
-  ideal_temp_high          Int @default(8)
-  ideal_humidity_low       Int @default(40)
-  ideal_humidity_high      Int @default(60)
-  good_temp_low            Int @default(-2)
-  good_temp_high           Int @default(12)
-  good_humidity_low        Int @default(0)
-  good_humidity_high       Int @default(70)
-  compromise_temp_low      Int @default(-5)
-  compromise_temp_high     Int @default(18)
-  compromise_humidity_low  Int @default(0)
-  compromise_humidity_high Int @default(80)
+  ideal_temp_low           Int      @default(3)
+  ideal_temp_high          Int      @default(8)
+  ideal_humidity_low       Int      @default(40)
+  ideal_humidity_high      Int      @default(60)
+  good_temp_low            Int      @default(-2)
+  good_temp_high           Int      @default(12)
+  good_humidity_low        Int      @default(0)
+  good_humidity_high       Int      @default(70)
+  compromise_temp_low      Int      @default(-5)
+  compromise_temp_high     Int      @default(18)
+  compromise_humidity_low  Int      @default(0)
+  compromise_humidity_high Int      @default(80)
   createdAt                DateTime @default(now())
   updatedAt                DateTime @default(now()) @updatedAt
 
