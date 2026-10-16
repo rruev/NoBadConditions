@@ -1,4 +1,4 @@
-import { publicCragService } from '../services';
+import { publicCragService } from '../services/index';
 
 export const getAll = async (req, res) => {
     const filter = req.query;

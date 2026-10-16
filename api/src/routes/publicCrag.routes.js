@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { publicCragController } from "../controllers";
+import { publicCragController } from "../controllers/index";
 
 const publicCragRoutes = Router();
 

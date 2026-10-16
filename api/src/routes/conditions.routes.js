@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { conditionsController } from "../controllers";
+import { conditionsController } from "../controllers/index";
 
 const conditionsRoutes = Router();
 
