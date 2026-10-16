@@ -6,6 +6,7 @@ export const getByLocation = async (req, res) => {
         const result = await conditionsService.getConditionsByLocation(lat, lon);
         res.json(result.conditionScore);
     } catch (error) {
+        console.log(error);
         res.status(500).json({ error: error.message });
     }
 }
@@ -16,6 +17,7 @@ export const getByCragId = async (req, res) => {
         const result = await conditionsService.getConditionsByCragId(cragId);
         res.json(result);
     } catch (error) {
+        console.log(error);
         res.status(500).json({ error: error.message });
     }
 }

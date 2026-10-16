@@ -30,8 +30,6 @@ export const getWeatherData = async (lat, lon) => {
     const url = process.env.OPEN_METEO_URL;
 
     const responses = await fetchWeatherApi(url, params);
-    console.log(responses);
-    console.log(responses[0]);  
 
     return responses[0];
 };
