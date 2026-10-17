@@ -9,8 +9,9 @@ userRoutes.post('/login', isGuest, userController.login);
 userRoutes.get('/logout', isAuthenticated, userController.logout);
 userRoutes.get('/me', isAuthenticated, userController.getUser);
 
-userRoutes.get('/:id', isAuthenticated, userController.getById);
-userRoutes.put('/:id', isAuthenticated, userController.update);
-userRoutes.delete('/:id', isAuthenticated, userController.remove);
+userRoutes.route('/:userId')
+    .get(isAuthenticated, userController.getById)
+    .put(isAuthenticated, userController.update)
+    .delete(isAuthenticated, userController.remove);
 
 export default userRoutes;

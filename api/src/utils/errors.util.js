@@ -11,7 +11,7 @@ export const getErrors = (error) => {
         } else if (error.code === 'P2025') {
             errors = { general: [`${error.meta?.modelName ?? 'Record'} not found`] };
         } else {
-            errors = { general: ['Database error occurred'] };
+            errors = { general: ['Database error occurred'], error: error.message };
         }
     } else if (error.name === 'InvalidPassword') {
         errors = { password: ['Invalid password'] };

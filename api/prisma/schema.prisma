@@ -40,8 +40,8 @@ model Crag {
   id        String   @id @default(cuid())
   userId    String
   name      String
-  longitude String
-  latitude  String
+  longitude Float
+  latitude  Float
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 

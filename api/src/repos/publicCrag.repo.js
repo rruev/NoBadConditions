@@ -13,9 +13,9 @@ export const getAll = async (filter) => {
     });
 }
 
-export const getById = async (id) => {
+export const getById = async (publicCragId) => {
     return prisma.publicCrag.findUnique({
-        where: { id }
+        where: { id: publicCragId }
     });
 }
 
@@ -25,15 +25,15 @@ export const create = async (data) => {
     });
 }
 
-export const update = async (id, data) => {
+export const update = async (publicCragId, data) => {
     return prisma.publicCrag.update({
-        where: { id },
+        where: { id: publicCragId },
         data
     });
 }
 
-export const remove = async (id) => {
+export const remove = async (publicCragId) => {
     return prisma.publicCrag.delete({
-        where: { id }
+        where: { id: publicCragId }
     });
 }

@@ -1,8 +1,8 @@
 import { prisma } from '../lib/prisma.js';
 
-export const getById = async (id) => {
+export const getById = async (userId) => {
     return prisma.user.findUnique({
-        where: { id },
+        where: { id: userId },
     });
 };
 
@@ -18,15 +18,15 @@ export const create = async (data) => {
     });
 };
 
-export const update = async (id, data) => {
+export const update = async (userId, data) => {
     return prisma.user.update({
-        where: { id },
+        where: { id: userId },
         data,
     });
 };
 
-export const remove = async (id) => {
+export const remove = async (userId) => {
     return prisma.user.delete({
-        where: { id },
+        where: { id: userId },
     });
 };
