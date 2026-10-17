@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { publicCragController } from "../controllers/index.js";
 
-const publicCragRoutes = Router();
+const publicCragRouter = Router();
 
-publicCragRoutes.get("/", publicCragController.getAll);
-publicCragRoutes.post("/", publicCragController.create);
-publicCragRoutes.route("/:publicCragId")
+publicCragRouter.get("/", publicCragController.getAll);
+publicCragRouter.post("/", publicCragController.create);
+publicCragRouter.route("/:publicCragId")
     .get(publicCragController.getById)
     .put(publicCragController.update)
     .delete(publicCragController.remove);
 
-export default publicCragRoutes;
+export default publicCragRouter;

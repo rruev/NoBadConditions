@@ -21,7 +21,10 @@ export const getAll = async (filter) => {
             }
         },
         take: filter.take || undefined,
-        skip: filter.skip || undefined
+        skip: filter.skip || undefined,
+        include: {
+            active: true
+        }
     });
 }
 

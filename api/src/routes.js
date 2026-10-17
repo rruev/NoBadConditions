@@ -1,13 +1,15 @@
 import { Router } from "express";
-import conditionsRoutes from "./routes/conditions.routes.js";
-import publicCragRoutes from "./routes/publicCrag.routes.js";
-import userRoutes from "./routes/user.routes.js";
-import cragRoutes from "./routes/crag.routes.js";
+import conditionsRouter from "./routes/conditions.routes.js";
+import publicCragRouter from "./routes/publicCrag.routes.js";
+import userRouter from "./routes/user.routes.js";
+import cragRouter from "./routes/crag.routes.js";
+import activeCragRouter from "./routes/activeCrag.routes.js";
 
 const router = Router();
-router.use("/conditions", conditionsRoutes);
-router.use("/public-crags", publicCragRoutes);
-router.use("/users", userRoutes);
-router.use("/crags", cragRoutes);
+router.use("/conditions", conditionsRouter);
+router.use("/public-crags", publicCragRouter);
+router.use("/users", userRouter);
+router.use("/crags", cragRouter);
+router.use("/active-crags", activeCragRouter);
 
 export default router;

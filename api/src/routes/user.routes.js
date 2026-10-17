@@ -2,16 +2,16 @@ import { Router } from 'express';
 import { userController } from '../controllers/index.js';
 import { isAuthenticated, isGuest } from '../middlewares/auth.middleware.js';
 
-const userRoutes = Router();
+const userRouter = Router();
 
-userRoutes.post('/', isGuest, userController.register);
-userRoutes.post('/login', isGuest, userController.login);
-userRoutes.get('/logout', isAuthenticated, userController.logout);
-userRoutes.get('/me', isAuthenticated, userController.getUser);
+userRouter.post('/', isGuest, userController.register);
+userRouter.post('/login', isGuest, userController.login);
+userRouter.get('/logout', isAuthenticated, userController.logout);
+userRouter.get('/me', isAuthenticated, userController.getUser);
 
-userRoutes.route('/:userId')
+userRouter.route('/:userId')
     .get(isAuthenticated, userController.getById)
     .put(isAuthenticated, userController.update)
     .delete(isAuthenticated, userController.remove);
 
-export default userRoutes;
+export default userRouter;
