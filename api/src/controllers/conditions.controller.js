@@ -4,7 +4,7 @@ export const getByLocation = async (req, res) => {
     const { lat, lon } = req.query;
     try {
         const result = await conditionsService.getConditionsByLocation(lat, lon);
-        res.json(result.conditionScore);
+        res.json(result);
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: error.message });

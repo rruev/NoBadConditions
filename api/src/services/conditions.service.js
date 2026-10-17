@@ -10,10 +10,7 @@ export const getConditionsByCragId = async (cragId) => {
 
 export const getConditionsByLocation = async (lat, lon) => {
     const weatherData = await weatherService.getWeatherData(lat, lon);
-    const conditionScore = await conditionScoreService.getConditionScore(weatherData);
+    const conditions = await conditionScoreService.getConditionScore(weatherData);
 
-    return {
-        weatherData,
-        conditionScore
-    };
+    return conditions;
 };
