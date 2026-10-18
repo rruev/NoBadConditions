@@ -12,6 +12,7 @@
 }
 
 .nav {
+    position: relative;
     width: min(1180px, calc(100% - 40px));
     min-height: 72px;
 
@@ -72,6 +73,45 @@
     gap: 32px;
 }
 
+.mobileToggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    color: white;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.menuIcon,
+.menuIconOpen {
+    width: 20px;
+    display: grid;
+    gap: 5px;
+}
+
+.menuIcon span,
+.menuIconOpen span {
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.menuIconOpen span:first-child {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menuIconOpen span:nth-child(2) {
+    opacity: 0;
+}
+
+.menuIconOpen span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
 .link {
     color: rgba(255, 255, 255, 0.78);
     text-decoration: none;
@@ -97,19 +137,154 @@
     border-radius: 999px;
 }
 
+.register-button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 8px 18px;
+    color: #071513;
+    background: var(--primary-hover);
+    border: 1px solid var(--primary-hover);
+    border-radius: 999px;
+}
+
+.userMenu {
+    position: relative;
+}
+
+.userButton {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    color: white;
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    cursor: pointer;
+    list-style: none;
+}
+
+.userButton::-webkit-details-marker {
+    display: none;
+}
+
+.userButton svg {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
+}
+
+.accountMenu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 190px;
+    display: grid;
+    gap: 4px;
+    padding: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+}
+
+.menuHeading {
+    padding: 8px 10px;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.menuOption,
+.logoutButton {
+    min-height: 38px;
+    padding: 8px 10px;
+    color: var(--text);
+    background: transparent;
+    border: 0;
+    border-radius: 5px;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.menuOption:hover,
+.logoutButton:hover {
+    background: var(--surface-light);
+}
+
+.logoutButton {
+    margin-top: 4px;
+    border-top: 1px solid var(--border);
+    border-radius: 0;
+}
+
 .brand:focus-visible,
-.link:focus-visible {
+.link:focus-visible,
+.mobileToggle:focus-visible,
+.userButton:focus-visible,
+.menuOption:focus-visible,
+.logoutButton:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 3px;
 }
 
 @media (max-width: 800px) {
-    .links {
-        gap: 16px;
+    .nav {
+        min-height: 64px;
     }
 
-    .link:not(.login-button) {
+    .mobileToggle {
+        display: grid;
+    }
+
+    .links {
+        position: absolute;
+        top: calc(100% + 1px);
+        right: 0;
+        left: 0;
         display: none;
+        align-items: stretch;
+        gap: 4px;
+        padding: 10px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 0 0 var(--radius-md) var(--radius-md);
+        box-shadow: var(--shadow);
+    }
+
+    .mobileOpen {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .link {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 5px;
+    }
+
+    .link:hover {
+        background: var(--surface-light);
+    }
+
+    .login-button,
+    .register-button {
+        width: 100%;
+        justify-content: flex-start;
+        border-radius: 5px;
+    }
+
+    .userMenu {
+        align-self: flex-start;
     }
 }
 
@@ -118,6 +293,10 @@
         width: calc(100% - 28px);
         min-height: 64px;
         gap: 12px;
+    }
+
+    .links {
+        border-radius: 0 0 8px 8px;
     }
 
     .brand {

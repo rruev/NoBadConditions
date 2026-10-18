@@ -17,7 +17,6 @@ export const register = async (req, res) => {
         res.status(201).json({
             id: user.id,
             email: user.email,
-            token
          });
     } catch (error) {
         res.status(400).json({ errors: getErrors(error) });
@@ -39,7 +38,6 @@ export const login = async (req, res) => {
         res.status(200).json({ 
             id: user.id,
             email: user.email,
-            token
          });
     } catch (error) {
         res.status(400).json({ errors: getErrors(error) });
