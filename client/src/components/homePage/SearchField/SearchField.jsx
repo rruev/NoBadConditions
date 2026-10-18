@@ -1,23 +1,17 @@
 import styles from './SearchField.module.css';
 import { usePublicCrags } from '../../../hooks/usePublicCrags';
-import { useEffect, useState } from 'react';
 
 export default function SearchField({ handleSelectCrag }) {
-    const { fetchPublicCrags, loading, error } = usePublicCrags();
-    const [publicCrags, setPublicCrags] = useState([]);
+    const { 
+        searchPublicCrags, 
+        publicCrags, 
+        loading, 
+        error 
+    } = usePublicCrags();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await fetchPublicCrags();
-            setPublicCrags(data);
-        };
-        fetchData();
-    }, []);
-
-    const handleSearchChange = async (e) => {
-        const data = await fetchPublicCrags(e.target.value);
-        setPublicCrags(data);
-    }
+    const handleSearchChange = (e) => {
+        searchPublicCrags(e.target.value);
+    }; 
 
     return (
         <div className={styles.searchContainer}>

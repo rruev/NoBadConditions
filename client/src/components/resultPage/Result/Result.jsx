@@ -2,7 +2,7 @@ import styles from './Result.module.css';
 import { useState } from 'react';
 import { Link } from 'react-router';
 import useConditions from '../../../hooks/useConditions';
-import { get12HourForecast } from '../../../utils/results.util';
+import { get12HourForecast, getDate } from '../../../utils/results.util';
 import ResultHeader from '../ResultHeader/ResultHeader';
 import ResultOverview from '../ResultOverview/ResultOverview';
 import ResultChart from '../ResultChart/ResultChart';
@@ -39,7 +39,7 @@ export default function Result() {
     console.log(conditions);
     const [dayIndex, setDayIndex] = useState(0);
     const [selectedHourIndex, setSelectedHourIndex] = useState(10);
-    const days = conditions.daily.map((day, index) => index === 0 ? 'Today' : index === 1 ? 'Tomorrow' : `Day ${index + 1}`);
+    const days = conditions.daily.map((day, index) => index === 0 ? 'Today' : index === 1 ? 'Tomorrow' : getDate(index));
     const day = days[dayIndex];
     const climbingWindow = get12HourForecast(conditions.hourly, dayIndex);
     const bestHour = climbingWindow.reduce((best, hour) => hour.overallScore > (best?.overallScore ?? 0) ? hour : best, 0);

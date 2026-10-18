@@ -6,7 +6,12 @@ import {
 } from "react";
 import { fetchConditions } from "../services/conditions.service";
 
-const ConditionsContext = createContext();
+const ConditionsContext = createContext({
+    conditions: [],
+    loading: false,
+    error: null,
+    fetchAndSetConditions: async () => {}
+});
 
 export const ConditionsProvider = ({ children }) => {
     const [conditions, setConditions] = useState([]);
@@ -30,24 +35,20 @@ export const ConditionsProvider = ({ children }) => {
         conditions,
         setConditions,
         loading,
-        setLoading,
         error,
-        setError,
         fetchAndSetConditions
     }), [
-        conditions, 
-        setConditions, 
+        conditions,
+        setConditions,
         loading, 
-        setLoading, 
         error, 
-        setError,
         fetchAndSetConditions
     ]);
 
     return (
-        <ConditionsContext value={contextValue}>
+        <ConditionsContext.Provider value={contextValue}>
             {children}
-        </ConditionsContext>
+        </ConditionsContext.Provider>
     );
 };
 
