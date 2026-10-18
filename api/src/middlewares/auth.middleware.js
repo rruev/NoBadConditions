@@ -1,7 +1,7 @@
 import { verifyToken } from '../utils/jwtToken.uitl.js';
 
 export const authMiddleware = (req, res, next) => {
-    const token = req.cookies['auth-token'];
+    const token = req.cookies['auth-token']
 
     if (!token) {
         return next();
@@ -13,7 +13,7 @@ export const authMiddleware = (req, res, next) => {
     } catch (error) {
         res.clearCookie('auth-token', {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: true,
             sameSite: 'None'
         });
         return res.status(400).json({ message: 'Invalid token.' });

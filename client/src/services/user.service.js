@@ -3,7 +3,7 @@ import { getErrors } from '../utils/errors.util';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
 
 export const register = async (userData) => {
-    const response = await fetch(`${API_URL}/users/register`, {
+    const response = await fetch(`${API_URL}/users`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -34,7 +34,7 @@ export const login = async (userData) => {
 
 export const logout = async () => {
     const response = await fetch(`${API_URL}/users/logout`, {
-        method: 'POST',
+        method: 'GET',
         credentials: 'include'
     });
     if (!response.ok) {

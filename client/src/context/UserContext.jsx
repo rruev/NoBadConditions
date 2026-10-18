@@ -2,7 +2,8 @@ import {
     createContext,
     useState,
     useMemo,
-    useCallback
+    useCallback,
+    useEffect
 } from 'react';
 import { userService } from '../services';
 
@@ -12,17 +13,17 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [userLoading, setUserLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const fetchUser = useCallback(async () => {
         try {
-            setLoading(true);
             const data = await userService.getUser();
             setUser(data);
         } catch (err) {
             setError(err);
         } finally {
-            setLoading(false);
+            setUserLoading(false);
         }
     }, []);
 
@@ -31,6 +32,7 @@ export const UserProvider = ({ children }) => {
             setLoading(true);
             const data = await userService.register(userData);
             setUser(data);
+            return data
         } catch (err) {
             setError(err);
         } finally {
@@ -39,10 +41,11 @@ export const UserProvider = ({ children }) => {
     }, []);
 
     const login = useCallback(async (userData) => {
+        setLoading(true);
         try {
-            setLoading(true);
             const data = await userService.login(userData);
             setUser(data);
+            return data;
         } catch (err) {
             setError(err);
         } finally {
@@ -62,6 +65,10 @@ export const UserProvider = ({ children }) => {
         }
     }, []);
 
+    useEffect(() => {
+        fetchUser();
+    }, [fetchUser]);
+
     const contextValue = useMemo(() => ({ 
         user, 
         setUser,
@@ -69,6 +76,7 @@ export const UserProvider = ({ children }) => {
         register,
         login,
         logout,
+        userLoading,
         error,
         loading,
         setError
@@ -79,6 +87,7 @@ export const UserProvider = ({ children }) => {
         register,
         login,
         logout,
+        userLoading,
         loading,
         error
     ]);
