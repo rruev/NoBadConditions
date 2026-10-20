@@ -1,0 +1,50 @@
+import Crag from '../Crag/Crag';
+import styles from './MyCrags.module.css';
+import useCrag from '../../../hooks/useCrag';
+
+export default function MyCrags() {
+    const { crags, loading, error } = useCrag();
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>Error: {error.message}</p>;
+    }
+
+    return (
+        <section className={styles.page}>
+            <div className={styles.container}>
+
+                <header className={styles.heading}>
+                    <div>
+                        <p className={styles.eyebrow}>Your crags</p>
+                        <h1>My crags</h1>
+                    </div>
+
+                    <button type="button" className={styles.addButton}>
+                        <span aria-hidden="true">+</span> Add crag
+                    </button>
+                </header>
+
+                <ul className={styles.grid}>
+                    {!crags.length && <p>You don't have any crags yet. Add your first crag from the button above.</p>}
+                    {crags.map(crag => (
+                        <li key={crag.id} className={styles.card}>
+                            <Crag
+                                cragId={crag.id}
+                                active={crag.active}
+                                name={crag.name}
+                                region={crag.region}
+                                latitude={crag.latitude}
+                                longitude={crag.longitude}
+                            />
+                        </li>
+                    ))}
+                </ul>
+
+            </div>
+        </section>
+    );
+}

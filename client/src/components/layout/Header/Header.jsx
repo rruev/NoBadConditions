@@ -51,8 +51,8 @@ export default function Header() {
                             <Link to="/" className={styles.link} onClick={closeMenu}>Home</Link>
                             {user ? (
                                 <>
-                                    <a href="#" className={styles.link} onClick={closeMenu}>ActiveCrags</a>
-                                    <a href="#" className={styles.link} onClick={closeMenu}>MyCrags</a>
+                                    <Link to="/activecrags" className={styles.link} onClick={closeMenu}>ActiveCrags</Link>
+                                    <Link to="/mycrags" className={styles.link} onClick={closeMenu}>MyCrags</Link>
                                     <details className={styles.userMenu}>
                                         <summary className={styles.userButton} aria-label="Open account menu">
                                             <svg viewBox="0 0 24 24" aria-hidden="true">

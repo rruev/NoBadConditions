@@ -1,0 +1,110 @@
+.cardMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 22px 22px 18px;
+    color: var(--text);
+    background: transparent;
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+}
+
+.cardTop {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.marker {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    color: var(--primary);
+    background: #17342f;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+.badge {
+    padding: 3px 10px;
+    color: var(--primary-hover);
+    background: rgba(79, 169, 154, 0.14);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.name {
+    font-size: 1.15rem;
+}
+
+.region {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+.meta {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.meta dt {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.meta dd {
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--border);
+}
+
+.action {
+    min-height: 44px;
+    color: var(--text-muted);
+    background: transparent;
+    border: 0;
+    border-right: 1px solid var(--border);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.action:last-child {
+    border-right: 0;
+}
+
+.action:hover {
+    color: var(--text);
+    background: var(--surface-light);
+}
+
+.danger:hover {
+    color: #ff8a8a;
+}
+
+.cardMain:focus-visible,
+.action:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: -2px;
+}
