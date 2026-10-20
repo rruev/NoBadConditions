@@ -1,5 +1,5 @@
 import styles from './Result.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router';
 import useConditions from '../../../hooks/useConditions';
 import { get12HourForecast, getDate } from '../../../utils/results.util';
@@ -19,25 +19,31 @@ const scoreFactors = [
 
 export default function Result() {
     const { conditions, loading } = useConditions();
-    console.log(conditions);
+    console.log(conditions.length);
     const [dayIndex, setDayIndex] = useState(0);
     const [selectedHourIndex, setSelectedHourIndex] = useState(10);
 
     const navigate = useNavigate();
 
-    const days = conditions.daily.map((day, index) => index === 0 ? 'Today' : index === 1 ? 'Tomorrow' : getDate(index));
+    const days = conditions?.daily?.map((day, index) => index === 0 ? 'Today' : index === 1 ? 'Tomorrow' : getDate(index)) || [];
     const day = days[dayIndex];
-    const climbingWindow = get12HourForecast(conditions.hourly, dayIndex);
+    const climbingWindow = get12HourForecast(conditions?.hourly || [], dayIndex);
     const bestHour = climbingWindow.reduce((best, hour) => hour.overallScore > (best?.overallScore ?? 0) ? hour : best, 0);
     const averageScore = (climbingWindow.reduce((sum, hour) => sum + Number(hour.overallScore), 0) / climbingWindow.length).toFixed(0);
     
-    const selectedHour = conditions.hourly[selectedHourIndex];
+    const selectedHour = conditions?.hourly?.[selectedHourIndex];
 
-    if (loading) {
+    useEffect(() => {
+        if (!loading && conditions.length === 0) {
+            navigate('/');
+        }
+    }, [loading, conditions, navigate]);
+
+    if (loading && conditions.length===0) {
         return <ResultSkeleton />;
     }
 
-    if (!conditions) {
+    if (conditions.length===0) {
         navigate('/');
         return null;
     }
