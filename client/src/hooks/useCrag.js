@@ -64,11 +64,11 @@ export default function useCrag(cragId, isEdit) {
         }
     };
 
-    const removeCrag = async () => {
+    const removeCrag = async (cragId) => {
         setLoading(true);
         setError(null);
         try {
-            await cragService.delete(cragId);
+            await cragService.remove(cragId);
             setCrags((prevCrags) => prevCrags.filter((crag) => crag.id !== cragId));
             if (crag && crag.id === cragId) {
                 setCrag(null);
@@ -81,14 +81,22 @@ export default function useCrag(cragId, isEdit) {
     };
 
     useEffect(() => {
+        if (isEdit === false ) return;
         if (cragId) {
             getCrag();
             return;
         }
-        if (isEdit === false ) return;
         getAllCrags();
         return () => {
             //abort
+            setCrags([]);
+            setCrag({
+                name: '',
+                latitude: '',
+                longitude: ''
+            });
+            setLoading(true);
+            setError(null);
         };
     }, [cragId]);
 

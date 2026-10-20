@@ -52,7 +52,6 @@ export const remove = async (req, res) => {
 
 export const getById = async (req, res) => {
     const { cragId } = req.params;
-    console.log(cragId);
 
     try {
         const crag = await cragService.getById(cragId);

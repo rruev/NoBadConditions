@@ -2,8 +2,9 @@ import { activeCragService } from '../services/index.js';
 import { getErrors } from '../utils/errors.util.js';
 
 export const getAll = async (req, res) => {
+    const userId = req.user.id;
     try {
-        const activeCrags = await activeCragService.getAll();
+        const activeCrags = await activeCragService.getAll(userId);
         res.json(activeCrags);
     } catch (error) {
         res.status(500).json({ error: getErrors(error) });

@@ -31,7 +31,7 @@ function App() {
                         <Route path="/mycrags" element={<PageOutlet />} >
                             <Route index element={<MyCrags />} />
                             <Route path="add" element={<AddEdit />} />
-                            <Route path=":id" element={<AddEdit />} />
+                            <Route path=":cragId" element={<AddEdit />} />
                         </Route>
                     </Routes>
                 </main>

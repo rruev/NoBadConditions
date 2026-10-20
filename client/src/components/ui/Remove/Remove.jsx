@@ -1,72 +1,46 @@
 import styles from './Remove.module.css';
-import { useId, useRef, useState } from 'react';
+import { useState } from 'react';
 
 export default function Remove({
     onConfirm,
-    children = 'Remove',
-    title = 'Are you sure?',
-    description = 'This action cannot be undone.',
-    confirmLabel = 'Remove',
-    cancelLabel = 'Cancel',
-    className,
-    disabled = false
+    onClose,
+    title,
+    description,
+    confirmLabel,
 }) {
-    const dialogRef = useRef(null);
-    const id = useId();
     const [pending, setPending] = useState(false);
-
-    const open = () => dialogRef.current?.showModal();
-    const close = () => dialogRef.current?.close();
 
     const handleConfirm = async () => {
         setPending(true);
         try {
-            await onConfirm?.();
-            close();
+            await onConfirm();
         } finally {
             setPending(false);
-        }
-    };
-
-    // A click on the backdrop targets the dialog element itself.
-    const handleBackdropClick = (e) => {
-        if (e.target === dialogRef.current && !pending) {
-            close();
+            onClose();
         }
     };
 
     return (
-        <>
-            <button
-                type="button"
-                className={className ?? styles.trigger}
-                disabled={disabled}
-                onClick={open}
-            >
-                {children}
-            </button>
-
-            <dialog
-                ref={dialogRef}
-                className={styles.dialog}
-                onClick={handleBackdropClick}
-                onCancel={(e) => pending && e.preventDefault()}
-                aria-labelledby={`${id}-title`}
-                aria-describedby={`${id}-description`}
+        <div className={styles.overlay}>
+            <div
+                role="dialog"
+                aria-modal="true"
+                aria-label={title}
+                className={styles.modal}
             >
                 <div className={styles.content}>
                     <span className={styles.icon} aria-hidden="true">!</span>
-                    <h2 id={`${id}-title`}>{title}</h2>
-                    <p id={`${id}-description`}>{description}</p>
+                    <h2>{title}</h2>
+                    <p>{description}</p>
 
                     <div className={styles.actions}>
                         <button
                             type="button"
                             className={styles.cancel}
-                            onClick={close}
+                            onClick={onClose}
                             disabled={pending}
                         >
-                            {cancelLabel}
+                            Cancel
                         </button>
                         <button
                             type="button"
@@ -80,7 +54,7 @@ export default function Remove({
                         </button>
                     </div>
                 </div>
-            </dialog>
-        </>
+            </div>
+        </div>
     );
 }

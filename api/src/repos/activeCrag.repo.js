@@ -1,7 +1,8 @@
 import { prisma } from '../lib/prisma.js';
 
-export const getAll = async () => {
+export const getAll = async (userId) => {
     return await prisma.activeCrag.findMany({
+        where: { userId },
         include: {
             crag: true
         }

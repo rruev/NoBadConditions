@@ -1,8 +1,8 @@
 import { activeCragRepo } from '../repos/index.js';
 import { weatherService, conditionScoreService } from './index.js';
 
-export const getAll = async () => {
-    const activeCrags = await activeCragRepo.getAll();
+export const getAll = async (userId) => {
+    const activeCrags = await activeCragRepo.getAll(userId);
     for (const activeCrag of activeCrags) {
         const weather = await weatherService.getWeatherData(activeCrag.crag.latitude, activeCrag.crag.longitude);
         activeCrag.conditions = await conditionScoreService.getConditionScore(weather);

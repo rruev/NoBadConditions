@@ -1,7 +1,9 @@
 import styles from './Crag.module.css';
-import useCrag from '../../../hooks/useCrag';
 import useConditions from '../../../hooks/useConditions';
+import useCrag from '../../../hooks/useCrag';
 import { useNavigate } from 'react-router';
+import { useState } from 'react';
+import Remove from '../../ui/Remove/Remove';
 
 export default function Crag({
     cragId,
@@ -9,15 +11,26 @@ export default function Crag({
     name,
     region,
     latitude,
-    longitude
- }) {
+    longitude,
+    onRemove,
+}) {
     const { fetchAndSetConditions } = useConditions();
+    const [showRemove, setShowRemove] = useState(false);
 
     const navigate = useNavigate();
 
     const handleCardClick = async () => {
         await fetchAndSetConditions(latitude, longitude, name);
         navigate('/result');
+    };
+
+    const handleRemove = async () => {
+        await onRemove(cragId);
+        setShowRemove(false);
+    };
+
+    const handleCloseRemove = () => {
+        setShowRemove(false);
     };
 
     return (
@@ -44,12 +57,19 @@ export default function Crag({
             </button>
 
             <div className={styles.actions}>
-                <button type="button" className={styles.action} onClick={() => {navigate(`${cragId}`)}}>Edit</button>
+                <button type="button" className={styles.action} onClick={() => { navigate(`${cragId}`) }}>Edit</button>
                 <button type="button" className={styles.action}>
                     {active ? 'Deactivate' : 'Set active'}
                 </button>
-                <button type="button" className={`${styles.action} ${styles.danger}`}>Remove</button>
+                <button type="button" className={`${styles.action} ${styles.danger}`} onClick={() => setShowRemove(true)}>Remove</button>
             </div>
+            {showRemove && <Remove
+                onConfirm={handleRemove}
+                onClose={handleCloseRemove}
+                title="Remove Crag"
+                description="Are you sure you want to remove this crag from your list? This will delete all associated data."
+                confirmLabel="Remove"
+            />}
         </>
     );
 }

@@ -1,20 +1,32 @@
 import styles from './AddEdit.module.css';
 import { Link, useParams, useNavigate } from 'react-router';
 import useCrag from '../../../hooks/useCrag';
+import Remove from '../../ui/Remove/Remove';
+import { useState } from 'react';
 
 export default function AddEdit() {
-    const { id } = useParams();
-    const isEdit = Boolean(id);
-    const { 
+    const { cragId } = useParams();
+    const isEdit = Boolean(cragId);
+    const {
         crag,
         loading,
         error,
         addCrag,
         updateCrag,
         removeCrag
-    } = useCrag(id, isEdit);
+    } = useCrag(cragId, isEdit);
+    const [showRemove, setShowRemove] = useState(false);
 
     const navigate = useNavigate();
+
+    const handleRemove = async () => {
+        await removeCrag(cragId);
+        navigate('/mycrags');
+    };
+
+    const handleCloseRemove = () => {
+        setShowRemove(false);
+    };
 
     const handleSubmit = async (formData) => {
         const data = Object.fromEntries(formData);
@@ -25,7 +37,7 @@ export default function AddEdit() {
             await addCrag(data);
         }
         navigate('/mycrags');
-    }; 
+    };
 
     return (
         <section className={styles.page}>
@@ -105,8 +117,17 @@ export default function AddEdit() {
                             <strong>Remove from my crags</strong>
                             <p>This crag will no longer appear in your list.</p>
                         </div>
-                        <button type="button" className={styles.remove}>Remove crag</button>
+                        <button type="button" className={styles.remove} onClick={() => setShowRemove(true)}>Remove crag</button>
                     </div>
+                )}
+                {showRemove && (
+                    <Remove
+                        onConfirm={handleRemove}
+                        onClose={handleCloseRemove}
+                        title="Remove Crag"
+                        description="Are you sure you want to remove this crag from your list? This will delete all associated data."
+                        confirmLabel="Remove"
+                    />
                 )}
 
             </div>
