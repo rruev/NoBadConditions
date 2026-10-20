@@ -8,7 +8,10 @@ export const create = async (data) => {
 
 export const getById = async (cragId) => {
     return await prisma.crag.findUnique({
-        where: { id: cragId }
+        where: { id: cragId },
+        include: {
+            active: true
+        }
     });
 };
 
