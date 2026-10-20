@@ -46,7 +46,7 @@ export default function AddEdit() {
                 </Link>
 
                 <p className={styles.eyebrow}>{isEdit ? 'Update your crag' : 'New crag'}</p>
-                <h1>{isEdit ? 'Edit crag' : 'Add crag'}</h1>
+                <h1>{isEdit ? 'Edit crag' : 'Add a custom crag'}</h1>
 
                 <form className={styles.form} action={handleSubmit}>
                     <div className={styles.field}>

@@ -24,8 +24,8 @@ export default function Crag({
     const navigate = useNavigate();
 
     const handleCardClick = async () => {
-        await fetchAndSetConditions(latitude, longitude, name);
         navigate('/result');
+        await fetchAndSetConditions(latitude, longitude, name);
     };
 
     const handleRemove = async () => {

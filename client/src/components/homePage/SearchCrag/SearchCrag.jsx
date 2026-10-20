@@ -22,8 +22,8 @@ export default function SearchCrag() {
     }
 
     const handleShowConditions = async () => {
-        await fetchAndSetConditions(location.lat, location.lon, cragName);
         navigate('/result');
+        await fetchAndSetConditions(location.lat, location.lon, cragName);
     }
 
     return (

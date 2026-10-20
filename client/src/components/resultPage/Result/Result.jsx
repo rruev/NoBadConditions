@@ -1,6 +1,6 @@
 import styles from './Result.module.css';
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import useConditions from '../../../hooks/useConditions';
 import { get12HourForecast, getDate } from '../../../utils/results.util';
 import ResultHeader from '../ResultHeader/ResultHeader';
@@ -8,6 +8,7 @@ import ResultOverview from '../ResultOverview/ResultOverview';
 import ResultChart from '../ResultChart/ResultChart';
 import ResultHourDetails from '../ResultHourDetails/ResultHourDetails';
 import ScoreOverview from '../ScoreOverview/ScoreOverview';
+import ResultSkeleton from '../ResultSkeleton/ResultSkeleton';
 
 const scoreFactors = [
     { key: 'temperature', label: 'Temperature', color: 'temperatureFactor' },
@@ -16,29 +17,14 @@ const scoreFactors = [
     { key: 'precipitation', label: 'Precipitation', color: 'precipitationFactor' },
 ];
 
-// Placeholder until the API returns three days; scores are shifted per day to tell them apart.
-// const scoreOffsets = [0, -12, 6];
-// const dayFormatter = new Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric' });
-
-// const days = scoreOffsets.map((offset, dayIndex) => {
-//     const date = new Date();
-//     date.setDate(date.getDate() + dayIndex);
-
-//     return {
-//         label: dayIndex === 0 ? 'Today' : dayIndex === 1 ? 'Tomorrow' : dayFormatter.format(date),
-//         date: dayFormatter.format(date),
-//         hours: hourlyForecast.map(hour => ({
-//             ...hour,
-//             score: Math.min(100, Math.max(0, hour.score + offset)),
-//         })),
-//     };
-// });
-
 export default function Result() {
-    const { conditions } = useConditions();
+    const { conditions, loading } = useConditions();
     console.log(conditions);
     const [dayIndex, setDayIndex] = useState(0);
     const [selectedHourIndex, setSelectedHourIndex] = useState(10);
+
+    const navigate = useNavigate();
+
     const days = conditions.daily.map((day, index) => index === 0 ? 'Today' : index === 1 ? 'Tomorrow' : getDate(index));
     const day = days[dayIndex];
     const climbingWindow = get12HourForecast(conditions.hourly, dayIndex);
@@ -47,6 +33,15 @@ export default function Result() {
     
     const selectedHour = conditions.hourly[selectedHourIndex];
 
+    if (loading) {
+        return <ResultSkeleton />;
+    }
+
+    if (!conditions) {
+        navigate('/');
+        return null;
+    }
+    
     return (
         <div className={styles.page}>
             <div className={styles.content}>

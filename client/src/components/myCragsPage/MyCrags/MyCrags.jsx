@@ -30,7 +30,7 @@ export default function MyCrags() {
                     </div>
 
                     <Link to="add" className={styles.addButton}>
-                        <span aria-hidden="true">+</span> Add crag
+                        <span aria-hidden="true">+</span> Add custom crag
                     </Link>
                 </header>
 

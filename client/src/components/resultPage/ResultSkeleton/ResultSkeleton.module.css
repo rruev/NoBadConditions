@@ -1,0 +1,281 @@
+.page {
+    min-height: calc(100vh - 70px);
+    padding: 112px 20px 76px;
+    background-color: var(--background);
+}
+
+.content {
+    width: min(1060px, 100%);
+    margin: 0 auto;
+}
+
+.shimmer {
+    display: block;
+    background: linear-gradient(100deg, #1a2a32 20%, #263b43 45%, #1a2a32 70%);
+    background-size: 220% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.backLink {
+    width: 140px;
+    height: 16px;
+    margin-bottom: 24px;
+    border-radius: 7px;
+}
+
+.header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.headerCopy {
+    display: grid;
+    gap: 10px;
+}
+
+.eyebrow {
+    width: 120px;
+    height: 10px;
+    border-radius: 5px;
+}
+
+.title {
+    width: min(420px, 72vw);
+    height: 42px;
+    border-radius: 10px;
+}
+
+.location {
+    width: min(360px, 58vw);
+    height: 16px;
+    border-radius: 7px;
+}
+
+.range {
+    width: 220px;
+    height: 30px;
+    border-radius: 999px;
+}
+
+.overview,
+.scoreOverview,
+.chartSection,
+.details {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+}
+
+.overview {
+    display: grid;
+    gap: 14px;
+    margin-top: 22px;
+    padding: 22px 24px;
+}
+
+.overviewTop {
+    width: 48%;
+    height: 28px;
+    border-radius: 8px;
+}
+
+.overviewBottom {
+    width: 100%;
+    height: 72px;
+    border-radius: 10px;
+}
+
+.scoreOverview {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+    padding: 22px 25px 20px;
+}
+
+.metric {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+}
+
+.metricValue {
+    width: 74px;
+    height: 42px;
+    border-radius: 8px;
+}
+
+.metricLabel {
+    width: 130px;
+    height: 14px;
+    border-radius: 7px;
+}
+
+.metricDivider {
+    width: 1px;
+    height: 100%;
+    background: rgba(145, 165, 167, 0.2);
+}
+
+.chartSection {
+    margin-top: 22px;
+    padding: 21px 24px 18px;
+}
+
+.chartHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.chartTitle {
+    width: 180px;
+    height: 22px;
+    border-radius: 8px;
+}
+
+.chartLegend {
+    width: 180px;
+    height: 14px;
+    border-radius: 7px;
+}
+
+.chart {
+    height: 175px;
+    display: grid;
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+    align-items: end;
+    gap: clamp(3px, 0.8vw, 10px);
+    margin-top: 18px;
+}
+
+.bar {
+    border-radius: 4px 4px 1px 1px;
+}
+
+.details {
+    margin-top: 22px;
+    padding: 22px 24px 24px;
+}
+
+.detailsTitle {
+    width: 220px;
+    height: 24px;
+    border-radius: 8px;
+}
+
+.detailsSummary {
+    width: 100%;
+    height: 76px;
+    border-radius: 10px;
+    margin-top: 14px;
+}
+
+.factors {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.factor {
+    display: grid;
+    gap: 10px;
+}
+
+.factorTitle {
+    width: 80%;
+    height: 12px;
+    border-radius: 6px;
+}
+
+.factorTrack {
+    width: 100%;
+    height: 8px;
+    border-radius: 99px;
+}
+
+@keyframes shimmer {
+    to {
+        background-position: -220% 0;
+    }
+}
+
+@media (max-width: 760px) {
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+    }
+
+    .range {
+        width: 180px;
+    }
+
+    .scoreOverview {
+        min-height: 160px;
+    }
+
+    .factors {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .page {
+        padding: 104px 14px 60px;
+    }
+
+    .content {
+        width: 100%;
+    }
+
+    .title {
+        height: 34px;
+    }
+
+    .overview,
+    .scoreOverview,
+    .chartSection,
+    .details {
+        border-radius: 8px;
+    }
+
+    .overview,
+    .details {
+        padding: 18px 16px;
+    }
+
+    .scoreOverview {
+        padding: 18px 8px;
+    }
+
+    .chartSection {
+        padding: 18px 12px 15px;
+    }
+
+    .chartHeader {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 11px;
+    }
+
+    .chartLegend {
+        width: 150px;
+    }
+
+    .chart {
+        gap: 2px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .shimmer {
+        animation: none;
+    }
+}

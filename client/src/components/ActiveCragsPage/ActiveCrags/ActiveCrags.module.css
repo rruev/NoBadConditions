@@ -74,6 +74,46 @@
     color: var(--primary-hover);
 }
 
+.dayNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.dayInfo {
+    color: var(--text);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.dayArrow {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--surface-light);
+    color: var(--text);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.dayArrow:hover:not(:disabled) {
+    border-color: var(--primary);
+}
+
+.dayArrow:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.dayArrow:focus-visible {
+    outline: 2px solid var(--primary-hover);
+    outline-offset: 2px;
+}
+
 .grid {
     list-style: none;
     display: grid;
