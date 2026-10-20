@@ -93,16 +93,16 @@ export default function ActiveCrags() {
                 {!loading && !error && activeCrags.length > 0 && (
                     <ul className={styles.grid}>
                         {activeCrags.map((activeCrag) => (
-                            <li key={activeCrag.id} className={styles.card} onClick={() => handleCardClick(activeCrag.crag.latitude, activeCrag.crag.longitude, activeCrag.crag.name)}>
+                            <li key={activeCrag.id} className={styles.card} >
                                 <div className={styles.cardHeader}>
-                                    <h2 className={styles.name}>
+                                    <h2 className={styles.name} onClick={() => handleCardClick(activeCrag.crag.latitude, activeCrag.crag.longitude, activeCrag.crag.name)}>
                                         <span className={styles.marker} aria-hidden="true">⌖</span>
                                         {activeCrag.crag?.name}
                                     </h2>
                                     <button type="button" className={styles.remove} onClick={() => removeFromActiveCrags(activeCrag.id)}>Remove</button>
                                 </div>
 
-                                <dl className={styles.stats}>
+                                <dl className={styles.stats} onClick={() => handleCardClick(activeCrag.crag.latitude, activeCrag.crag.longitude, activeCrag.crag.name)}>
                                     <div>
                                         <dt>Best window</dt>
                                         <dd>{BEST_WINDOW}</dd>
@@ -113,7 +113,7 @@ export default function ActiveCrags() {
                                     </div>
                                 </dl>
 
-                                <div className={styles.chart} role="group" aria-label="Hourly climbing score">
+                                <div className={styles.chart} role="group" aria-label="Hourly climbing score" onClick={() => handleCardClick(activeCrag.crag.latitude, activeCrag.crag.longitude, activeCrag.crag.name)}>
                                     {HOURLY_SCORES.map(({ time, score }) => {
                                         const level = getScoreLevel(score);
 

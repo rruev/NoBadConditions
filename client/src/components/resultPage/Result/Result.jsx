@@ -25,6 +25,22 @@ export default function Result() {
 
     const navigate = useNavigate();
 
+    
+    useEffect(() => {
+        if (!loading && conditions.length === 0) {
+            navigate('/');
+        }
+    }, [loading, conditions, navigate]);
+    
+    if (loading) {
+        return <ResultSkeleton />;
+    }
+    
+    if (conditions.length===0) {
+        navigate('/');
+        return null;
+    }
+
     const days = conditions?.daily?.map((day, index) => index === 0 ? 'Today' : index === 1 ? 'Tomorrow' : getDate(index)) || [];
     const day = days[dayIndex];
     const climbingWindow = get12HourForecast(conditions?.hourly || [], dayIndex);
@@ -32,21 +48,6 @@ export default function Result() {
     const averageScore = (climbingWindow.reduce((sum, hour) => sum + Number(hour.overallScore), 0) / climbingWindow.length).toFixed(0);
     
     const selectedHour = conditions?.hourly?.[selectedHourIndex];
-
-    useEffect(() => {
-        if (!loading && conditions.length === 0) {
-            navigate('/');
-        }
-    }, [loading, conditions, navigate]);
-
-    if (loading && conditions.length===0) {
-        return <ResultSkeleton />;
-    }
-
-    if (conditions.length===0) {
-        navigate('/');
-        return null;
-    }
     
     return (
         <div className={styles.page}>
