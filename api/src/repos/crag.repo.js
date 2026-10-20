@@ -12,9 +12,10 @@ export const getById = async (cragId) => {
     });
 };
 
-export const getAll = async (filter) => {
+export const getAll = async (userId,filter) => {
     return prisma.crag.findMany({
         where: {
+            userId,
             name: {
                 contains: filter.search || '',
                 mode: 'insensitive'
@@ -26,7 +27,7 @@ export const getAll = async (filter) => {
             active: true
         }
     });
-}
+};
 
 export const update = async (cragId, userId, data) => {
     return await prisma.crag.update({

@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import { cragService } from '../services';
 
-export default function useCrag(cragId) {
-    const [crags, setCrags] = useState(null);
-    const [crag, setCrag] = useState(null);
+export default function useCrag(cragId, isEdit) {
+    const [crags, setCrags] = useState([]);
+    const [crag, setCrag] = useState({
+        name: '',
+        latitude: '',
+        longitude: ''
+    });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -50,7 +54,7 @@ export default function useCrag(cragId) {
         setLoading(true);
         setError(null);
         try {
-            const data = await cragService.update(updatedCrag);
+            const data = await cragService.update(cragId, updatedCrag);
             setCrags((prevCrags) => prevCrags.map((crag) => crag.id === data.id ? data : crag));
             setCrag(data);
         } catch (err) {
@@ -81,6 +85,7 @@ export default function useCrag(cragId) {
             getCrag();
             return;
         }
+        if (isEdit === false ) return;
         getAllCrags();
         return () => {
             //abort

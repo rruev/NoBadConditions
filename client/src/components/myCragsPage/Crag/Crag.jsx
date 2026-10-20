@@ -44,7 +44,7 @@ export default function Crag({
             </button>
 
             <div className={styles.actions}>
-                <button type="button" className={styles.action}>Edit</button>
+                <button type="button" className={styles.action} onClick={() => {navigate(`${cragId}`)}}>Edit</button>
                 <button type="button" className={styles.action}>
                     {active ? 'Deactivate' : 'Set active'}
                 </button>

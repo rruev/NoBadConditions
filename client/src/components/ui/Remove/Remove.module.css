@@ -1,0 +1,120 @@
+.trigger {
+    min-height: 40px;
+    padding: 0 16px;
+    color: #ff8a8a;
+    background: transparent;
+    border: 1px solid rgba(255, 107, 107, 0.5);
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.trigger:hover {
+    background: rgba(255, 107, 107, 0.12);
+}
+
+.trigger:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.dialog {
+    width: min(calc(100% - 32px), 400px);
+    margin: auto;
+    padding: 0;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+
+.dialog::backdrop {
+    background: rgba(5, 10, 13, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.content {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    padding: 28px 24px 22px;
+    text-align: center;
+}
+
+.icon {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 6px;
+    color: #ff8a8a;
+    background: rgba(255, 107, 107, 0.12);
+    border-radius: 50%;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.content h2 {
+    font-size: 1.2rem;
+}
+
+.content p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+
+.actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.cancel,
+.confirm {
+    min-height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.cancel {
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--border);
+}
+
+.cancel:hover {
+    background: var(--surface-light);
+}
+
+.confirm {
+    color: white;
+    background: #d94c4c;
+    border: 0;
+}
+
+.confirm:hover {
+    background: #e25f5f;
+}
+
+.cancel:disabled,
+.confirm:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.trigger:focus-visible,
+.cancel:focus-visible,
+.confirm:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}

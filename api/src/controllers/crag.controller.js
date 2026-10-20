@@ -28,9 +28,10 @@ export const update = async (req, res) => {
 };
 
 export const getAll = async (req, res) => {
+    const userId = req.user.id;
     try {
         const filter = req.query;
-        const crags = await cragService.getAll(filter);
+        const crags = await cragService.getAll(userId, filter);
         res.status(200).json(crags);
     } catch (error) {
         res.status(400).json({ error: getErrors(error) });

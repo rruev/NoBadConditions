@@ -44,12 +44,17 @@
 
 .addButton {
     min-height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
     padding: 0 20px;
     color: #071513;
     background: var(--primary-hover);
     border: 0;
     border-radius: 999px;
     font-weight: 700;
+    text-decoration: none;
     cursor: pointer;
     transition: background 0.2s ease;
 }

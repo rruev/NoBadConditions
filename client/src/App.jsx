@@ -9,8 +9,10 @@ import Header from './components/layout/Header/Header.jsx';
 import Footer from './components/layout/Footer/Footer.jsx';
 import Home from './components/homePage/Home/Home.jsx';
 import Result from './components/resultPage/Result/Result.jsx';
+import PageOutlet from './components/myCragsPage/PageOutlet.jsx';
 import ActiveCrags from './components/ActiveCragsPage/ActiveCrags/ActiveCrags.jsx';
 import MyCrags from './components/myCragsPage/MyCrags/MyCrags.jsx';
+import AddEdit from './components/myCragsPage/AddEdit/AddEdit.jsx';
 
 function App() {
 
@@ -26,8 +28,10 @@ function App() {
                         <Route path="/login" element={<LogIn />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/activecrags" element={<ActiveCrags />} />
-                        <Route path="/mycrags" element={<MyCrags />} >
-                            <Route path=":id" element={<MyCrags />} />
+                        <Route path="/mycrags" element={<PageOutlet />} >
+                            <Route index element={<MyCrags />} />
+                            <Route path="add" element={<AddEdit />} />
+                            <Route path=":id" element={<AddEdit />} />
                         </Route>
                     </Routes>
                 </main>

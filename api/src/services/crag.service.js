@@ -8,8 +8,8 @@ export const getById = async (cragId) => {
     return await cragRepo.getById(cragId);
 };
 
-export const getAll = async (filter) => {
-    return await cragRepo.getAll(filter);
+export const getAll = async (userId, filter) => {
+    return await cragRepo.getAll(userId, filter);
 };
 
 export const update = async (cragId, userId, data) => {
