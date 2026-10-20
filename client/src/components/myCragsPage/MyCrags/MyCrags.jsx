@@ -2,6 +2,7 @@ import Crag from '../Crag/Crag';
 import styles from './MyCrags.module.css';
 import useCrag from '../../../hooks/useCrag';
 import { Outlet, Link } from 'react-router';
+import MyCragSkeleton from './MyCragSkeleton';
 
 export default function MyCrags() {
     const { crags, loading, error, removeCrag } = useCrag();
@@ -11,7 +12,7 @@ export default function MyCrags() {
     };
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <MyCragSkeleton />;
     }
 
     if (error) {

@@ -6,7 +6,8 @@ export const getAll = async () => {
     const response = await fetch(`${API_URL}/active-crags`, {
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        credentials: 'include'
     });
     if (!response.ok) {
         throw new Error(getErrors(response));
@@ -20,7 +21,8 @@ export const create = async (cragId) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ cragId })
+        body: JSON.stringify({ cragId }),
+        credentials: 'include'
     });
     if (!response.ok) {
         throw new Error(getErrors(response));
@@ -33,7 +35,8 @@ export const remove = async (activeCragId) => {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        credentials: 'include'
     });
     if (!response.ok) {
         throw new Error(getErrors(response));

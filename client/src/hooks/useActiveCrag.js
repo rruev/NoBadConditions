@@ -1,7 +1,7 @@
 import { activeCragService } from '../services';
 import { useState, useEffect } from 'react';
 
-export const useActiveCrag = () => {
+export default function useActiveCrag(initialFetch = false) {
     const [activeCrags, setActiveCrags] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -44,14 +44,16 @@ export const useActiveCrag = () => {
 
 
     useEffect(() => {
-        fetchActiveCrags();
+        if (initialFetch) {
+            fetchActiveCrags();
+        }
         return () => {
             //abort
             setActiveCrags([]);
             setLoading(true);
             setError(null);
         }
-    }, []);
+    }, [initialFetch]);
 
     return { activeCrags, loading, error, addToActiveCrags, removeFromActiveCrags };
 };

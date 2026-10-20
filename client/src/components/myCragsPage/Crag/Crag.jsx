@@ -1,6 +1,6 @@
 import styles from './Crag.module.css';
 import useConditions from '../../../hooks/useConditions';
-import useCrag from '../../../hooks/useCrag';
+import useActiveCrag from '../../../hooks/useActiveCrag';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
 import Remove from '../../ui/Remove/Remove';
@@ -15,6 +15,7 @@ export default function Crag({
     onRemove,
 }) {
     const { fetchAndSetConditions } = useConditions();
+    const { addToActiveCrags, removeFromActiveCrags } = useActiveCrag();
     const [showRemove, setShowRemove] = useState(false);
 
     const navigate = useNavigate();
@@ -32,6 +33,14 @@ export default function Crag({
     const handleCloseRemove = () => {
         setShowRemove(false);
     };
+
+    const handleToggleActive = async () => {
+        if (active) {
+            await removeFromActiveCrags(active.id);
+        } else {
+            await addToActiveCrags(cragId);
+        }
+    }
 
     return (
         <>
@@ -58,7 +67,7 @@ export default function Crag({
 
             <div className={styles.actions}>
                 <button type="button" className={styles.action} onClick={() => { navigate(`${cragId}`) }}>Edit</button>
-                <button type="button" className={styles.action}>
+                <button type="button" className={styles.action} onClick={handleToggleActive}>
                     {active ? 'Deactivate' : 'Set active'}
                 </button>
                 <button type="button" className={`${styles.action} ${styles.danger}`} onClick={() => setShowRemove(true)}>Remove</button>

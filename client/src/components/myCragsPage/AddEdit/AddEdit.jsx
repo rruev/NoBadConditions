@@ -9,8 +9,6 @@ export default function AddEdit() {
     const isEdit = Boolean(cragId);
     const {
         crag,
-        loading,
-        error,
         addCrag,
         updateCrag,
         removeCrag

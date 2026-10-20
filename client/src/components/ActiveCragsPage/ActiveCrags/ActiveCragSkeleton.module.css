@@ -1,0 +1,88 @@
+.grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+
+.shimmer {
+    display: block;
+    background: linear-gradient(100deg, #1a2a32 20%, #263b43 45%, #1a2a32 70%);
+    background-size: 220% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.name {
+    width: 55%;
+    height: 22px;
+    border-radius: 6px;
+}
+
+.remove {
+    width: 72px;
+    height: 32px;
+    border-radius: 999px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.stat {
+    height: 52px;
+    border-radius: var(--radius-md);
+}
+
+.chart {
+    height: 150px;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: end;
+    gap: 6px;
+}
+
+.bar {
+    border-radius: 4px 4px 1px 1px;
+}
+
+@keyframes shimmer {
+    to {
+        background-position: -220% 0;
+    }
+}
+
+@media (max-width: 560px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .shimmer {
+        animation: none;
+    }
+}
