@@ -22,10 +22,10 @@ export default function Crag({
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+    const page = 'mycrags';
 
     const handleCardClick = async () => {
-        navigate('/result');
-        await fetchAndSetConditions(latitude, longitude, name);
+        await fetchAndSetConditions(latitude, longitude, name, page);
     };
 
     const handleRemove = async () => {

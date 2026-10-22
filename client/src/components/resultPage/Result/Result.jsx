@@ -2,7 +2,7 @@ import styles from './Result.module.css';
 import { useState } from 'react';
 import useConditions from '../../../hooks/useConditions';
 
-import { Link } from 'react-router';
+import { Link, useParams } from 'react-router';
 import { getDailyStats } from '../../../utils/results.util';
 
 import ResultHeader from '../ResultHeader/ResultHeader';
@@ -23,6 +23,9 @@ export default function Result() {
     const { conditions, loading } = useConditions();
     const [dayIndex, setDayIndex] = useState(0);
     const [selectedHourIndex, setSelectedHourIndex] = useState(10);
+
+    const { page } = useParams();
+    const home = page === 'home';
     
     const {
         days,
@@ -35,13 +38,12 @@ export default function Result() {
         return <ResultSkeleton />;
     }
 
-    
     return (
         <div className={styles.page}>
             <div className={styles.content}>
-                <Link to="/" className={styles.backLink}>
+                <Link to={home ? '/' : `/${page}`} className={styles.backLink}>
                     <span aria-hidden="true">←</span>
-                    Back to search
+                    Back
                 </Link>
 
                 <ResultHeader name={conditions.cragName} location="Gmunden, Austria" />

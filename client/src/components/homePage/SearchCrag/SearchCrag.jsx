@@ -1,6 +1,5 @@
 import styles from './SearchCrag.module.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
 import Map from '../Map/Map';
 import LocationFields from '../LocationFields/LocationFields';
 import SearchField from '../SearchField/SearchField';
@@ -9,10 +8,11 @@ import useConditions from '../../../hooks/useConditions';
 
 export default function SearchCrag() {
     const { fetchAndSetConditions } = useConditions();
-    const navigate = useNavigate();
     const [showLocationFields, setShowLocationFields] = useState(true);
     const [location, setLocation] = useState({ lat: null, lon: null });
     const [cragName, setCragName] = useState('');
+
+    const page = 'home';
 
     const toggleLocationFields = () => setShowLocationFields(prev => !prev);
 
@@ -22,8 +22,7 @@ export default function SearchCrag() {
     }
 
     const handleShowConditions = async () => {
-        navigate('/result');
-        await fetchAndSetConditions(location.lat, location.lon, cragName);
+        await fetchAndSetConditions(location.lat, location.lon, cragName, page);
     }
 
     return (

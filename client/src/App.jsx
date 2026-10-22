@@ -24,7 +24,7 @@ function App() {
                 <main>
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/result" element={<Result />} />
+                        <Route path="/result/:page" element={<Result />} />
                         <Route path="/login" element={<LogIn />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/activecrags" element={<ActiveCrags />} />

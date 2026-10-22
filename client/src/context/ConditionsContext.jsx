@@ -5,6 +5,7 @@ import {
     useState 
 } from "react";
 import { fetchConditions } from "../services/conditions.service";
+import { useNavigate } from "react-router";
 
 const ConditionsContext = createContext({
     conditions: [],
@@ -18,9 +19,12 @@ export const ConditionsProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const fetchAndSetConditions = useCallback(async (lat, lon, cragName="") => {
+    const navigate = useNavigate();
+
+    const fetchAndSetConditions = useCallback(async (lat, lon, cragName="", page) => {
         setLoading(true);
         setError(null);
+        navigate(`/result/${page}`);
         try {
             const data = await fetchConditions(lat, lon);
             setConditions({...data, cragName: cragName});

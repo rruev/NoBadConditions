@@ -1,5 +1,4 @@
 import styles from './ActiveCrag.module.css';
-import { useNavigate } from 'react-router';
 import useConditions from '../../../hooks/useConditions';
 import { getScoreLevel, getDailyStats } from '../../../utils/results.util';
 
@@ -11,13 +10,12 @@ export default function ActiveCrag({
     removeFromActiveCrags
 }) {
     const { fetchAndSetConditions } = useConditions();
-    const navigate = useNavigate();
 
     const { bestHour, averageScore } = getDailyStats(conditions, dayIndex);
+    const page = 'activecrags';
 
     const handleCardClick = async (latitude, longitude, name) => {
-        navigate('/result');
-        await fetchAndSetConditions(latitude, longitude, name);
+        await fetchAndSetConditions(latitude, longitude, name, page);
     };
 
     return (
