@@ -34,7 +34,7 @@ export const login = async (userData) => {
 
 export const logout = async () => {
     const response = await fetch(`${API_URL}/users/logout`, {
-        method: 'GET',
+        method: 'POST',
         credentials: 'include'
     });
     if (!response.ok) {

@@ -6,7 +6,7 @@ const userRouter = Router();
 
 userRouter.post('/', isGuest, userController.register);
 userRouter.post('/login', isGuest, userController.login);
-userRouter.get('/logout', isAuthenticated, userController.logout);
+userRouter.post('/logout', isAuthenticated, userController.logout);
 userRouter.get('/me', isAuthenticated, userController.getUser);
 
 userRouter.route('/:userId')
