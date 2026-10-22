@@ -1,6 +1,7 @@
 import { userService } from '../services/index.js';
 import { userLogInSchema, userRegisterSchema } from '../schemas/user.schema.js';
 import { getErrors } from '../utils/errors.util.js';
+import { ca } from 'zod/v4/locales';
 
 export const register = async (req, res) => {
     try {
@@ -50,7 +51,7 @@ export const logout = async (req, res) => {
         secure: true,
         sameSite: 'None'
     });
-    res.status(200).json({ message: 'Logged out successfully' });
+    res.status(200).json({ message: 'Logged out successfully' }, { headers: { 'Cache-Control': 'no-store' } });
 };
 
 export const getUser = async (req, res) => {

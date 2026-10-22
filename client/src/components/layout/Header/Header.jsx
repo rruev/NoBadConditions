@@ -30,7 +30,7 @@ export default function Header() {
                 {userLoading ? (
                     <HeaderSkeleton />
                 ) : (
-                    <>
+                    <div className={styles.navWrapper}>
                         <nav
                             id="primary-navigation"
                             className={`${styles.links} ${menuOpen ? styles.mobileOpen : ''}`}
@@ -87,7 +87,7 @@ export default function Header() {
                                 </span>
                             </button>
                         </div>
-                    </>
+                    </div>
                 )}
 
             </div>

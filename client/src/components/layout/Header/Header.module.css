@@ -25,6 +25,12 @@
     gap: 30px;
 }
 
+.navWrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
 .brand {
     display: flex;
     align-items: center;
