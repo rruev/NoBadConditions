@@ -13,15 +13,9 @@ export default function Hero() {
                     </span>
 
                     <h1 className={styles.title}>
-                        Better conditions.<br />
-                        Better climbing.
+                        "There is no bad conditions, only weakness."<br />
+                        - Alex Megos
                     </h1>
-
-                    <p>
-                        Find the best time to climb based on temperature,
-                        humidity, precipitation, wind and other conditions
-                        at the crag.
-                    </p>
 
                 </div>
 

@@ -1,42 +1,18 @@
 import styles from './ActiveCrags.module.css';
-import useActiveCrag from '../../../hooks/useActiveCrag';
-import useConditions from '../../../hooks/useConditions';
-import ActiveCragSkeleton from './ActiveCragSkeleton';
-import { getScoreLevel } from '../../../utils/results.util';
-import { Link, useNavigate } from 'react-router';
 import { useState } from 'react';
-import { getDate } from '../../../utils/results.util';
+import useActiveCrag from '../../../hooks/useActiveCrag';
 
-// Placeholder data until the real scores are wired in.
-const BEST_WINDOW = '10:00 – 13:00';
-const AVERAGE_SCORE = 78;
-const DAYS_COUNT = 7;
-const HOURLY_SCORES = [
-    { time: '08', score: 54 },
-    { time: '09', score: 66 },
-    { time: '10', score: 82 },
-    { time: '11', score: 91 },
-    { time: '12', score: 94 },
-    { time: '13', score: 88 },
-    { time: '14', score: 79 },
-    { time: '15', score: 72 },
-    { time: '16', score: 63 },
-    { time: '17', score: 48 },
-    { time: '18', score: 36 },
-    { time: '19', score: 24 },
-];
+import { Link } from 'react-router';
+import { getDailyStats } from '../../../utils/results.util';
+
+import ActiveCragSkeleton from './ActiveCragSkeleton';
+import ActiveCrag from '../ActiveCrag/ActiveCrag';
 
 export default function ActiveCrags() {
     const { activeCrags, loading, error, removeFromActiveCrags } = useActiveCrag(true);
-    const { fetchAndSetConditions } = useConditions();
     const [dayIndex, setDayIndex] = useState(0);
 
-    const navigate = useNavigate();
-
-    const handleCardClick = async (latitude, longitude, name) => {
-        navigate('/result');
-        await fetchAndSetConditions(latitude, longitude, name);
-    };
+    const { days } = getDailyStats(activeCrags[0]?.conditions, dayIndex);
 
     return (
         <section className={styles.page}>
@@ -76,13 +52,13 @@ export default function ActiveCrags() {
                             ‹
                         </button>
                         <div className={styles.dayInfo} aria-live="polite">
-                            <strong>{getDate(dayIndex)}</strong>
+                            <strong>{days[dayIndex]}</strong>
                         </div>
                         <button
                             type="button"
                             className={styles.dayArrow}
                             aria-label="Next day"
-                            disabled={dayIndex === DAYS_COUNT - 1}
+                            disabled={dayIndex === days.length - 1}
                             onClick={() => setDayIndex(dayIndex + 1)}
                         >
                             ›
@@ -93,55 +69,14 @@ export default function ActiveCrags() {
                 {!loading && !error && activeCrags.length > 0 && (
                     <ul className={styles.grid}>
                         {activeCrags.map((activeCrag) => (
-                            <li key={activeCrag.id} className={styles.card} >
-                                <div className={styles.cardHeader}>
-                                    <h2 className={styles.name} onClick={() => handleCardClick(activeCrag.crag.latitude, activeCrag.crag.longitude, activeCrag.crag.name)}>
-                                        <span className={styles.marker} aria-hidden="true">⌖</span>
-                                        {activeCrag.crag?.name}
-                                    </h2>
-                                    <button type="button" className={styles.remove} onClick={() => removeFromActiveCrags(activeCrag.id)}>Remove</button>
-                                </div>
-
-                                <dl className={styles.stats} onClick={() => handleCardClick(activeCrag.crag.latitude, activeCrag.crag.longitude, activeCrag.crag.name)}>
-                                    <div>
-                                        <dt>Best window</dt>
-                                        <dd>{BEST_WINDOW}</dd>
-                                    </div>
-                                    <div>
-                                        <dt>12h average</dt>
-                                        <dd className={styles[getScoreLevel(AVERAGE_SCORE)]}>{AVERAGE_SCORE}</dd>
-                                    </div>
-                                </dl>
-
-                                <div className={styles.chart} role="group" aria-label="Hourly climbing score" onClick={() => handleCardClick(activeCrag.crag.latitude, activeCrag.crag.longitude, activeCrag.crag.name)}>
-                                    {HOURLY_SCORES.map(({ time, score }) => {
-                                        const level = getScoreLevel(score);
-
-                                        return (
-                                            <span
-                                                key={time}
-                                                className={styles.hour}
-                                                tabIndex={0}
-                                                aria-label={`${time}:00, climbing score ${score} out of 100`}
-                                            >
-                                                <span className={styles.barTrack}>
-                                                    <span
-                                                        className={`${styles.tooltip} ${styles[level]}`}
-                                                        style={{ bottom: `calc(${score}% + 6px)` }}
-                                                    >
-                                                        {score}
-                                                    </span>
-                                                    <span
-                                                        className={`${styles.bar} ${styles[`${level}Bar`]}`}
-                                                        style={{ height: `${score}%` }}
-                                                    />
-                                                </span>
-                                                <span className={styles.hourLabel}>{time}</span>
-                                            </span>
-                                        );
-                                    })}
-                                </div>
-                            </li>
+                            <ActiveCrag
+                                key={activeCrag.id}
+                                activeCragId={activeCrag.id}
+                                crag={activeCrag.crag}
+                                conditions={activeCrag.conditions}
+                                dayIndex={dayIndex}
+                                removeFromActiveCrags={removeFromActiveCrags}
+                            />
                         ))}
                     </ul>
                 )}

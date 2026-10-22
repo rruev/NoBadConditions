@@ -1,7 +1,6 @@
 import styles from './ResultChart.module.css';
 import shared from '../../../styles/shared.module.css';
 import { getScoreLevel } from '../../../utils/results.util';
-import ScoreOverview from '../ScoreOverview/ScoreOverview';
 
 export default function ResultChart({
     hourlyForecast,
@@ -83,7 +82,7 @@ export default function ResultChart({
                                             style={{ height: `${hour.overallScore}%` }}
                                         />
                                     </span>
-                                    <span className={styles.hourLabel}>{hour.time}</span>
+                                    <span className={styles.hourLabel}>{hour.time.split(':')[0]}</span>
                                 </button>
                             );
                         })}
