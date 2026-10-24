@@ -5,6 +5,8 @@ export default function useCrag(cragId, isEdit) {
     const [crags, setCrags] = useState([]);
     const [crag, setCrag] = useState({
         name: '',
+        city: '',
+        country: '',
         latitude: '',
         longitude: ''
     });
@@ -73,6 +75,8 @@ export default function useCrag(cragId, isEdit) {
             if (crag && crag.id === cragId) {
                 setCrag({
                     name: '',
+                    city: '',
+                    country: '',
                     latitude: '',
                     longitude: ''
                 });

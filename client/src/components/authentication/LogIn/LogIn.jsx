@@ -3,26 +3,19 @@ import sharedStyles from '../../../styles/shared.module.css';
 import { Link } from 'react-router';
 import { useUser } from '../../../hooks/useUser';
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
 import SubmitButton from '../../ui/SubmitButton/SubmitButton';
 
 export default function LogIn() {
     const { login, error, clearError } = useUser();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const navigate = useNavigate();
     
     useEffect(() => {
         clearError();
     }, [clearError]);
 
     const handleSubmit = async () => {
-        const user = await login({ email, password });
-
-        if (user) {
-            navigate('/');
-        }
+         await login({ email, password });
     };
 
     return (

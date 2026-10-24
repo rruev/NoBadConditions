@@ -28,6 +28,8 @@ model User {
 model PublicCrag {
   id        String   @id @default(cuid())
   name      String
+  city      String?
+  country   String?
   longitude String
   latitude  String
   createdAt DateTime @default(now())
@@ -40,6 +42,8 @@ model Crag {
   id        String   @id @default(cuid())
   userId    String
   name      String
+  city      String?
+  country   String?
   longitude Float
   latitude  Float
   createdAt DateTime @default(now())

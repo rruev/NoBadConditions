@@ -11,7 +11,12 @@ export default function SearchField({ handleSelectCrag }) {
 
     const handleSearchChange = (e) => {
         searchPublicCrags(e.target.value);
-    }; 
+    };
+
+    const handleClick = (e, crag) => {
+        e.currentTarget.blur();
+        handleSelectCrag(crag.latitude, crag.longitude, crag.name, `${crag.city}, ${crag.country}`);
+    }
 
     return (
         <div className={styles.searchContainer}>
@@ -51,7 +56,7 @@ export default function SearchField({ handleSelectCrag }) {
                                 key={crag.id}
                                 type="button"
                                 className={styles.resultItem}
-                                onClick={(e) => { e.currentTarget.blur(); handleSelectCrag(crag.latitude, crag.longitude, crag.name); }}
+                                onClick={(e) => handleClick(e, crag)}
                             >
                                 <span className={styles.resultMarker}>⌖</span>
                                 <span className={styles.resultDetails}>

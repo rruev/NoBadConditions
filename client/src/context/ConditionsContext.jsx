@@ -21,13 +21,13 @@ export const ConditionsProvider = ({ children }) => {
 
     const navigate = useNavigate();
 
-    const fetchAndSetConditions = useCallback(async (lat, lon, cragName="", page) => {
+    const fetchAndSetConditions = useCallback(async (lat, lon, cragName="", region="", page) => {
         setLoading(true);
         setError(null);
         navigate(`/result/${page}`);
         try {
             const data = await fetchConditions(lat, lon);
-            setConditions({...data, cragName: cragName});
+            setConditions({...data, cragName: cragName, region: region});
         } catch (err) {
             setError(err);
         } finally {

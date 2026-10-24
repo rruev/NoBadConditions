@@ -10,7 +10,8 @@ export default function Crag({
     cragId,
     active,
     name,
-    region,
+    city,
+    country,
     latitude,
     longitude,
     onRemove,
@@ -25,7 +26,7 @@ export default function Crag({
     const page = 'mycrags';
 
     const handleCardClick = async () => {
-        await fetchAndSetConditions(latitude, longitude, name, page);
+        await fetchAndSetConditions(latitude, longitude, name, `${city}, ${country}`, page);
     };
 
     const handleRemove = async () => {
@@ -59,7 +60,7 @@ export default function Crag({
                 </span>
 
                 <strong className={styles.name}>{name}</strong>
-                <span className={styles.region}>{region}</span>
+                <span className={styles.region}>{city}, {country}</span>
 
                 <dl className={styles.meta}>
                     <div>

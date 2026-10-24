@@ -23,7 +23,8 @@ export default function AddEdit() {
     const [showRemove, setShowRemove] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
-        region: '',
+        city: '',
+        country: '',
         latitude: '',
         longitude: ''
     });
@@ -32,7 +33,8 @@ export default function AddEdit() {
         if (isEdit) {
             setFormData({
                 name: crag.name,
-                region: '',
+                city: crag.city,
+                country: crag.country,
                 latitude: crag.latitude,
                 longitude: crag.longitude
             });
@@ -90,7 +92,7 @@ export default function AddEdit() {
 
                 <form className={styles.form} action={handleAction}>
                     <div className={styles.field}>
-                        <label htmlFor="crag-name">Name</label>
+                        <label htmlFor="crag-name">Name *</label>
                         {loading && isEdit ?
                             <span className="button-spinner" aria-hidden="true"></span>
                             :
@@ -109,27 +111,46 @@ export default function AddEdit() {
                     </div>
 
                     <div className={styles.field}>
-                        <label htmlFor="crag-region">Region</label>
+                        <label htmlFor="crag-city">City</label>
                         {loading && isEdit ?
                             <span className="button-spinner" aria-hidden="true"></span> :
 
                             <input
-                                id="crag-region"
-                                name="region"
+                                id="crag-city"
+                                name="city"
                                 type="text"
-                                placeholder="e.g. Croatia"
+                                placeholder="e.g. Zagreb"
                                 autoComplete="off"
-                                value={formData.region}
+                                value={formData.city}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             />
                         }
-                        {errorMessage('region')}
+                        {errorMessage('city')}
+                    </div>
+
+                                        <div className={styles.field}>
+                        <label htmlFor="crag-country">Country</label>
+                        {loading && isEdit ?
+                            <span className="button-spinner" aria-hidden="true"></span> :
+
+                            <input
+                                id="crag-country"
+                                name="country"
+                                type="text"
+                                placeholder="e.g. Croatia"
+                                autoComplete="off"
+                                value={formData.country}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                        }
+                        {errorMessage('country')}
                     </div>
 
                     <div className={styles.row}>
                         <div className={styles.field}>
-                            <label htmlFor="crag-latitude">Latitude</label>
+                            <label htmlFor="crag-latitude">Latitude *</label>
                             {loading && isEdit ?
                                 <span className="button-spinner" aria-hidden="true"></span> :
 
@@ -149,7 +170,7 @@ export default function AddEdit() {
                         </div>
 
                         <div className={styles.field}>
-                            <label htmlFor="crag-longitude">Longitude</label>
+                            <label htmlFor="crag-longitude">Longitude *</label>
                             {loading && isEdit ?
                                 <span className="button-spinner" aria-hidden="true"></span> :
 

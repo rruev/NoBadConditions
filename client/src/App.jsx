@@ -13,6 +13,10 @@ import PageOutlet from './components/myCragsPage/PageOutlet.jsx';
 import ActiveCrags from './components/ActiveCragsPage/ActiveCrags/ActiveCrags.jsx';
 import MyCrags from './components/myCragsPage/MyCrags/MyCrags.jsx';
 import AddEdit from './components/myCragsPage/AddEdit/AddEdit.jsx';
+import NotFound from './components/ui/NotFound/NotFound.jsx';
+import IsAuthenticated from './components/guards/IsAuthenticated.jsx';
+import IsGuest from './components/guards/IsGuest.jsx';
+import ResultPageGuard from './components/guards/ResultPageGuard.jsx';
 
 function App() {
 
@@ -24,15 +28,25 @@ function App() {
                 <main>
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/result/:page" element={<Result />} />
-                        <Route path="/login" element={<LogIn />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/activecrags" element={<ActiveCrags />} />
-                        <Route path="/mycrags" element={<PageOutlet />} >
-                            <Route index element={<MyCrags />} />
-                            <Route path="add" element={<AddEdit />} />
-                            <Route path=":cragId" element={<AddEdit />} />
+                        <Route element={<ResultPageGuard />}>
+                            <Route path="/result/:page" element={<Result />} />
                         </Route>
+
+                        <Route element={<IsGuest />}>
+                            <Route path="/login" element={<LogIn />} />
+                            <Route path="/register" element={<Register />} />
+                        </Route>
+
+                        <Route element={<IsAuthenticated />}>
+                            <Route path="/activecrags" element={<ActiveCrags />} />
+                            <Route path="/mycrags" element={<PageOutlet />} >
+                                <Route index element={<MyCrags />} />
+                                <Route path="add" element={<AddEdit />} />
+                                <Route path=":cragId" element={<AddEdit />} />
+                            </Route>
+                        </Route>
+
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </main>
 

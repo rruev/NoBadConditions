@@ -35,6 +35,7 @@ export default function Result() {
     } = getDailyStats(conditions, dayIndex);
 
     const selectedHour = conditions?.hourly?.[selectedHourIndex];
+
     if (loading) {
         return <ResultSkeleton />;
     }
@@ -51,7 +52,7 @@ export default function Result() {
                     <ErrorMessage error={error} />
                     :
                     <>
-                        <ResultHeader name={conditions.cragName} location="Gmunden, Austria" />
+                        <ResultHeader name={conditions.cragName} location={conditions.region} />
 
                         <ResultOverview bestHour={bestHour} averageScore={averageScore} currentWeather={conditions.current} />
 

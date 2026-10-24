@@ -7,7 +7,6 @@ import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
 
 export default function MyCrags() {
     const { crags, loading, error, removeCrag } = useCrag();
-    console.log(error)
 
     const handleRemove = async (cragId) => {
         await removeCrag(cragId);
@@ -48,7 +47,8 @@ export default function MyCrags() {
                                 cragId={crag.id}
                                 active={crag.active}
                                 name={crag.name}
-                                region={crag.region}
+                                city={crag.city}
+                                country={crag.country}
                                 latitude={crag.latitude}
                                 longitude={crag.longitude}
                                 onRemove={handleRemove}
