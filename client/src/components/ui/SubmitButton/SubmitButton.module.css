@@ -20,3 +20,8 @@
 .submitButton:hover {
     background: var(--primary);
 }
+
+.submitButton:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+}

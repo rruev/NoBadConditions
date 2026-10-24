@@ -1,16 +1,21 @@
 import styles from "./LogIn.module.css";
+import sharedStyles from '../../../styles/shared.module.css';
 import { Link } from 'react-router';
 import { useUser } from '../../../hooks/useUser';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import SubmitButton from '../../ui/SubmitButton/SubmitButton';
 
 export default function LogIn() {
-    const { login, error, loading } = useUser();
+    const { login, error, clearError } = useUser();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+    
+    useEffect(() => {
+        clearError();
+    }, [clearError]);
 
     const handleSubmit = async () => {
         const user = await login({ email, password });
@@ -37,6 +42,7 @@ export default function LogIn() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
+                    {error && error.email && <p className={sharedStyles.error}>{error.email}</p>}
 
                     <label htmlFor="login-password">Password</label>
                     <input
@@ -48,8 +54,10 @@ export default function LogIn() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
+                    {error && error.password && <p className={sharedStyles.error}>{error.password}</p>}
 
                     <SubmitButton type="login" />
+                    {error && error.general && <p className={sharedStyles.error}>{error.general}</p>}
                 </form>
 
                 <p className={styles.switchForm}>

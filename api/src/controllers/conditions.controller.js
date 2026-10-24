@@ -1,4 +1,5 @@
 import { conditionsService } from "../services/index.js";
+import { getErrors } from "../utils/errors.util.js";
 
 export const getByLocation = async (req, res) => {
     const { lat, lon } = req.query;
@@ -7,7 +8,7 @@ export const getByLocation = async (req, res) => {
         res.json(result);
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ error: getErrors(error) });
     }
 }
 
@@ -18,6 +19,6 @@ export const getByCragId = async (req, res) => {
         res.json(result);
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ error: getErrors(error) });
     }
 }

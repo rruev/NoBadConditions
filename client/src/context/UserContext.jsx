@@ -1,4 +1,4 @@
-import { 
+import {
     createContext,
     useState,
     useMemo,
@@ -6,6 +6,8 @@ import {
     useEffect
 } from 'react';
 import { userService } from '../services';
+import { registerSchema } from '../schemas/user.schema';
+import * as z from 'zod';
 
 
 export const UserContext = createContext();
@@ -21,7 +23,7 @@ export const UserProvider = ({ children }) => {
             const data = await userService.getUser();
             setUser(data);
         } catch (err) {
-            setError(err);
+            console.error(err);
         } finally {
             setUserLoading(false);
         }
@@ -34,7 +36,7 @@ export const UserProvider = ({ children }) => {
             setUser(data);
             return data
         } catch (err) {
-            setError(err);
+            setError(err.errors || { general: err.message });
         } finally {
             setLoading(false);
         }
@@ -47,7 +49,7 @@ export const UserProvider = ({ children }) => {
             setUser(data);
             return data;
         } catch (err) {
-            setError(err);
+            setError(err.errors || { general: err.message });
         } finally {
             setLoading(false);
         }
@@ -59,18 +61,22 @@ export const UserProvider = ({ children }) => {
             await userService.logout();
             setUser(null);
         } catch (err) {
-            setError(err);
+            setError(err.errors || { general: err.message });
         } finally {
             setLoading(false);
         }
+    }, []);
+
+    const clearError = useCallback(() => {
+        setError(null);
     }, []);
 
     useEffect(() => {
         fetchUser();
     }, [fetchUser]);
 
-    const contextValue = useMemo(() => ({ 
-        user, 
+    const contextValue = useMemo(() => ({
+        user,
         setUser,
         fetchUser,
         register,
@@ -79,7 +85,7 @@ export const UserProvider = ({ children }) => {
         userLoading,
         error,
         loading,
-        setError
+        clearError,
     }), [
         user,
         setUser,
@@ -89,7 +95,8 @@ export const UserProvider = ({ children }) => {
         logout,
         userLoading,
         loading,
-        error
+        clearError,
+        error,
     ]);
 
     return (

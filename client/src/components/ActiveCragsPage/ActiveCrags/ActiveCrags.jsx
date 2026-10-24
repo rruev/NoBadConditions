@@ -1,6 +1,7 @@
 import styles from './ActiveCrags.module.css';
 import { useState } from 'react';
 import useActiveCrag from '../../../hooks/useActiveCrag';
+import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
 
 import { Link } from 'react-router';
 import { getDailyStats } from '../../../utils/results.util';
@@ -30,9 +31,7 @@ export default function ActiveCrags() {
 
                 {loading && <ActiveCragSkeleton />}
 
-                {!loading && error && (
-                    <p className={styles.message} role="alert">{error.message}</p>
-                )}
+                {!loading && error && <ErrorMessage error={error} />}
 
                 {!loading && !error && !activeCrags.length && (
                     <p className={styles.message}>

@@ -1,9 +1,12 @@
 import styles from './AddEdit.module.css';
+import sharedStyles from '../../../styles/shared.module.css';
 import { Link, useParams, useNavigate } from 'react-router';
 import useCrag from '../../../hooks/useCrag';
 import Remove from '../../ui/Remove/Remove';
 import { useEffect, useState } from 'react';
 import SubmitButton from '../../ui/SubmitButton/SubmitButton';
+import useValidate from '../../../hooks/useValidate';
+import { cragSchema } from '../../../schemas/crag.schema';
 
 export default function AddEdit() {
     const { cragId } = useParams();
@@ -11,10 +14,12 @@ export default function AddEdit() {
     const {
         crag,
         loading,
+        error: serverError,
         addCrag,
         updateCrag,
         removeCrag
     } = useCrag(cragId, isEdit);
+    const { validateInput, error, touched } = useValidate(cragSchema);
     const [showRemove, setShowRemove] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
@@ -24,12 +29,14 @@ export default function AddEdit() {
     });
 
     useEffect(() => {
-        setFormData({
-            name: crag.name,
-            region: '',
-            latitude: crag.latitude,
-            longitude: crag.longitude
-        });
+        if (isEdit) {
+            setFormData({
+                name: crag.name,
+                region: '',
+                latitude: crag.latitude,
+                longitude: crag.longitude
+            });
+        }
     }, [crag]);
 
     const navigate = useNavigate();
@@ -46,6 +53,19 @@ export default function AddEdit() {
 
     const handleCloseRemove = () => {
         setShowRemove(false);
+    };
+
+    const errorMessage = (field) => {
+        if (touched[field] && error && error[field]) {
+            return <p className={sharedStyles.error}>{error[field]}</p>;
+        } else if (serverError && serverError[field]) {
+            return <p className={sharedStyles.error}>{serverError[field]}</p>;
+        }
+        return null;
+    };
+
+    const handleBlur = async (e) => {
+        await validateInput(e, formData);
     };
 
     const handleAction = async () => {
@@ -72,7 +92,7 @@ export default function AddEdit() {
                     <div className={styles.field}>
                         <label htmlFor="crag-name">Name</label>
                         {loading && isEdit ?
-                            <span className="button-spinner" aria-hidden="true"></span> 
+                            <span className="button-spinner" aria-hidden="true"></span>
                             :
                             <input
                                 id="crag-name"
@@ -82,8 +102,10 @@ export default function AddEdit() {
                                 autoComplete="off"
                                 value={formData.name}
                                 onChange={handleChange}
+                                onBlur={handleBlur}
                             />
                         }
+                        {errorMessage('name')}
                     </div>
 
                     <div className={styles.field}>
@@ -99,8 +121,10 @@ export default function AddEdit() {
                                 autoComplete="off"
                                 value={formData.region}
                                 onChange={handleChange}
+                                onBlur={handleBlur}
                             />
                         }
+                        {errorMessage('region')}
                     </div>
 
                     <div className={styles.row}>
@@ -118,8 +142,10 @@ export default function AddEdit() {
                                     autoComplete="off"
                                     value={formData.latitude}
                                     onChange={handleChange}
+                                    onBlur={handleBlur}
                                 />
                             }
+                            {errorMessage('latitude')}
                         </div>
 
                         <div className={styles.field}>
@@ -136,15 +162,18 @@ export default function AddEdit() {
                                     autoComplete="off"
                                     value={formData.longitude}
                                     onChange={handleChange}
+                                    onBlur={handleBlur}
                                 />
                             }
+                            {errorMessage('longitude')}
                         </div>
                     </div>
 
                     <div className={styles.actions}>
-                        <SubmitButton type={isEdit ? 'edit' : 'add'} />
+                        <SubmitButton type={isEdit ? 'edit' : 'add'} disabled={error} />
                         <Link to="/mycrags" className={styles.secondary}>Cancel</Link>
                     </div>
+                    {serverError && serverError.general && <p className={sharedStyles.error}>{serverError.general}</p>}
                 </form>
 
                 {isEdit && (

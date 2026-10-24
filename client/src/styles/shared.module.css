@@ -24,3 +24,13 @@
 .low {
 	color: #d98272;
 }
+
+.error {
+	color: var(--error);
+	font-size: 0.85rem;
+	margin-top: 4px;
+}
+
+.inputError {
+	border: 1px solid var(--error);
+}

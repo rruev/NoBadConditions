@@ -62,25 +62,6 @@
 .form button {
 	min-height: 48px;
 	margin-top: 16px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 10px;
-	color: #071513;
-	background: var(--primary-hover);
-	border: 0;
-	border-radius: 6px;
-	font-weight: 700;
-	cursor: pointer;
-}
-
-.form button:hover {
-	background: var(--primary);
-}
-
-.form button:disabled {
-	opacity: 0.75;
-	cursor: wait;
 }
 
 .switchForm {

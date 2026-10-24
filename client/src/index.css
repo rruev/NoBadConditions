@@ -17,6 +17,8 @@
     --radius-md: 10px;
 
     --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+
+    --error: #e74c3c;
 }
 
 * {

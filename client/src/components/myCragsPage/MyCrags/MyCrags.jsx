@@ -3,9 +3,11 @@ import styles from './MyCrags.module.css';
 import useCrag from '../../../hooks/useCrag';
 import { Outlet, Link } from 'react-router';
 import MyCragSkeleton from './MyCragSkeleton';
+import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
 
 export default function MyCrags() {
     const { crags, loading, error, removeCrag } = useCrag();
+    console.log(error)
 
     const handleRemove = async (cragId) => {
         await removeCrag(cragId);
@@ -16,7 +18,11 @@ export default function MyCrags() {
     }
 
     if (error) {
-        return <p>Error: {error.message}</p>;
+        return (
+            <section className={styles.page}>
+                <ErrorMessage error={error} />
+            </section>
+        );
     }
 
     return (

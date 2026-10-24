@@ -20,10 +20,10 @@ const buttons = {
     }
 }
 
-export default function SubmitButton({ type }) {
+export default function SubmitButton({ type, disabled }) {
     const { pending } = useFormStatus();
     return (
-        <button className={styles.submitButton} disabled={pending} aria-busy={pending}>
+        <button className={styles.submitButton} disabled={pending || disabled} aria-busy={pending}>
             {pending && <span className="button-spinner" aria-hidden="true"></span>}
             {pending ? buttons[type].pendingLabel : buttons[type].label}
         </button>
