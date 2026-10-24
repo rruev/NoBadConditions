@@ -71,7 +71,11 @@ export default function useCrag(cragId, isEdit) {
             await cragService.remove(cragId);
             setCrags((prevCrags) => prevCrags.filter((crag) => crag.id !== cragId));
             if (crag && crag.id === cragId) {
-                setCrag(null);
+                setCrag({
+                    name: '',
+                    latitude: '',
+                    longitude: ''
+                });
             }
         } catch (err) {
             setError(err);
@@ -89,14 +93,6 @@ export default function useCrag(cragId, isEdit) {
         getAllCrags();
         return () => {
             //abort
-            setCrags([]);
-            setCrag({
-                name: '',
-                latitude: '',
-                longitude: ''
-            });
-            setLoading(true);
-            setError(null);
         };
     }, [cragId]);
 

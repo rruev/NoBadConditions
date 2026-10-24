@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { registerSchema } from '../../../schemas/user.schema';
 import { useUser } from '../../../hooks/useUser';
 import { useNavigate } from "react-router";
+import SubmitButton from '../../ui/SubmitButton/SubmitButton';
 
 export default function Register() {
     const { register, loading } = useUser();
@@ -22,8 +23,7 @@ export default function Register() {
 
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         await register(data);
         navigate('/');
     };
@@ -34,7 +34,7 @@ export default function Register() {
                 <p className={styles.eyebrow}>Start planning your next climb</p>
                 <h1>Create an account</h1>
 
-                <form className={styles.form} onSubmit={handleSubmit}>
+                <form className={styles.form} action={handleSubmit}>
                     <label htmlFor="register-email">Email</label>
                     <input
                         id="register-email"
@@ -67,10 +67,7 @@ export default function Register() {
                         placeholder="Enter your password again"
                     />
 
-                    <button type="submit" disabled={loading} aria-busy={loading}>
-                        {loading && <span className="button-spinner" aria-hidden="true" />}
-                        {loading ? 'Creating account...' : 'Create account'}
-                    </button>
+                    <SubmitButton type="register" />
                 </form>
 
                 <p className={styles.switchForm}>

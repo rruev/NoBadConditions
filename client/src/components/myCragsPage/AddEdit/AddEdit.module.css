@@ -107,7 +107,6 @@
     margin-top: 8px;
 }
 
-.primary,
 .secondary {
     min-height: 48px;
     display: inline-flex;
@@ -118,17 +117,6 @@
     font-weight: 700;
     text-decoration: none;
     cursor: pointer;
-}
-
-.primary {
-    color: #071513;
-    background: var(--primary-hover);
-    border: 0;
-    transition: background 0.2s ease;
-}
-
-.primary:hover {
-    background: var(--primary);
 }
 
 .secondary {

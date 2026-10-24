@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { useUser } from '../../../hooks/useUser';
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import SubmitButton from '../../ui/SubmitButton/SubmitButton';
 
 export default function LogIn() {
     const { login, error, loading } = useUser();
@@ -11,8 +12,7 @@ export default function LogIn() {
 
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         const user = await login({ email, password });
 
         if (user) {
@@ -26,7 +26,7 @@ export default function LogIn() {
                 <p className={styles.eyebrow}>Welcome back</p>
                 <h1>Log in</h1>
 
-                <form className={styles.form} onSubmit={handleSubmit}>
+                <form className={styles.form} action={handleSubmit}>
                     <label htmlFor="login-email">Email</label>
                     <input
                         id="login-email"
@@ -49,10 +49,7 @@ export default function LogIn() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
 
-                    <button type="submit" disabled={loading} aria-busy={loading}>
-                        {loading && <span className="button-spinner" aria-hidden="true" />}
-                        {loading ? 'Logging in...' : 'Log in'}
-                    </button>
+                    <SubmitButton type="login" />
                 </form>
 
                 <p className={styles.switchForm}>
