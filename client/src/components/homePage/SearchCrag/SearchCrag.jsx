@@ -11,20 +11,22 @@ export default function SearchCrag() {
     const [showLocationFields, setShowLocationFields] = useState(true);
     const [location, setLocation] = useState({ lat: null, lon: null });
     const [cragName, setCragName] = useState('');
-    const [region, setRegion] = useState(''); 
+    const [city, setCity] = useState('');
+    const [country, setCountry] = useState('');
 
     const page = 'home';
 
     const toggleLocationFields = () => setShowLocationFields(prev => !prev);
 
-    const handleLocationChange = (lat, lon, cragName="", region="") => {
+    const handleLocationChange = (lat, lon, cragName="", city="", country="") => {
         setLocation({ lat, lon });
         setCragName(cragName);
-        setRegion(region);
+        setCity(city);
+        setCountry(country);
     }
 
     const handleShowConditions = async () => {
-        await fetchAndSetConditions(location.lat, location.lon, cragName, region, page);
+        await fetchAndSetConditions(location.lat, location.lon, cragName, city, country, page);
     }
 
     return (

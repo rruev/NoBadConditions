@@ -2,14 +2,15 @@ import styles from './ResultHeader.module.css';
 
 export default function ResultHeader({
     name,
-    location
+    city,
+    country
 }) {
     return (
         <header className={styles.pageHeader}>
             <div>
                 <p className={styles.eyebrow}>CRAG CONDITIONS</p>
                 <h1>{name}</h1>
-                <p className={styles.location}>{location} <span aria-hidden="true">·</span> Today, {new Date().toLocaleDateString()}</p>
+                <p className={styles.location}>{(city && country) ? `${city}, ${country}` : 'Unknown'} <span aria-hidden="true">·</span> Today, {new Date().toLocaleDateString()}</p>
             </div>
             <div className={styles.forecastRange}>
                 <span className={styles.liveDot} />

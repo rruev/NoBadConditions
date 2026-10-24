@@ -52,7 +52,7 @@ export default function Result() {
                     <ErrorMessage error={error} />
                     :
                     <>
-                        <ResultHeader name={conditions.cragName} location={conditions.region} />
+                        <ResultHeader name={conditions.cragName} city={conditions.city} country={conditions.country} />
 
                         <ResultOverview bestHour={bestHour} averageScore={averageScore} currentWeather={conditions.current} />
 

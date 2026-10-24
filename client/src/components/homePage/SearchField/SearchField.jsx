@@ -15,7 +15,7 @@ export default function SearchField({ handleSelectCrag }) {
 
     const handleClick = (e, crag) => {
         e.currentTarget.blur();
-        handleSelectCrag(crag.latitude, crag.longitude, crag.name, `${crag.city}, ${crag.country}`);
+        handleSelectCrag(crag.latitude, crag.longitude, crag.name, crag.city, crag.country);
     }
 
     return (

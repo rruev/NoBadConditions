@@ -14,8 +14,8 @@ export default function ActiveCrag({
     const { bestHour, averageScore } = getDailyStats(conditions, dayIndex);
     const page = 'activecrags';
 
-    const handleCardClick = async (latitude, longitude, name, region) => {
-        await fetchAndSetConditions(latitude, longitude, name, region, page);
+    const handleCardClick = async (latitude, longitude, name, city, country) => {
+        await fetchAndSetConditions(latitude, longitude, name, city, country, page);
     };
 
     return (
@@ -26,7 +26,7 @@ export default function ActiveCrag({
                     {crag?.name}
                 </h2>
                 <div className={styles.actions}>
-                    <button type='button' className={styles.view} onClick={() => handleCardClick(crag.latitude, crag.longitude, crag.name, `${crag.city}, ${crag.country}`)}>View weather</button>
+                    <button type='button' className={styles.view} onClick={() => handleCardClick(crag.latitude, crag.longitude, crag.name, crag.city, crag.country)}>View weather</button>
                     <button type="button" className={styles.remove} onClick={() => removeFromActiveCrags(activeCragId)}>Remove from the list</button>
                 </div>
             </div>

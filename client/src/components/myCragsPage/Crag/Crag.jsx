@@ -26,7 +26,7 @@ export default function Crag({
     const page = 'mycrags';
 
     const handleCardClick = async () => {
-        await fetchAndSetConditions(latitude, longitude, name, `${city}, ${country}`, page);
+        await fetchAndSetConditions(latitude, longitude, name, city, country, page);
     };
 
     const handleRemove = async () => {
@@ -60,7 +60,7 @@ export default function Crag({
                 </span>
 
                 <strong className={styles.name}>{name}</strong>
-                <span className={styles.region}>{city}, {country}</span>
+                <span className={styles.region}>{(city && country) ? `${city}, ${country}` : ''}</span>
 
                 <dl className={styles.meta}>
                     <div>
