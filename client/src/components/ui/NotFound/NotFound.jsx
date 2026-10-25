@@ -14,7 +14,6 @@ export default function NotFound() {
 
                 <div className={styles.actions}>
                     <Link to="/" className={styles.primary}>Back to home</Link>
-                    <Link to="/mycrags" className={styles.secondary}>My crags</Link>
                 </div>
             </div>
         </section>

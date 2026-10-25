@@ -24,7 +24,7 @@ export default function ActiveCrags() {
                         <h1>Active crags</h1>
                     </div>
 
-                    <Link to="/mycrags" className={styles.addButton}>
+                    <Link to="/my-crags" className={styles.addButton}>
                         <span aria-hidden="true">+</span> Add to active crags
                     </Link>
                 </header>
@@ -35,7 +35,7 @@ export default function ActiveCrags() {
 
                 {!loading && !error && !activeCrags.length && (
                     <p className={styles.message}>
-                        You don't have any active crags yet. Pick some from your <Link to="/mycrags">crags</Link>.
+                        You don't have any active crags yet. Pick some from your <Link to="/my-crags">crags</Link>.
                     </p>
                 )}
 

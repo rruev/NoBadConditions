@@ -13,7 +13,7 @@ export default function ResultPageGuard() {
     if (!loading && conditions.length === 0) {
         console.log("No conditions available");
         if (user) {
-            return <Navigate to="/activecrags" />;
+            return <Navigate to="/active-crags" />;
         }
         return <Navigate to="/" />;
     }

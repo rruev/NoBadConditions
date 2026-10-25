@@ -1,13 +1,12 @@
 import Crag from '../Crag/Crag';
 import styles from './MyCrags.module.css';
 import useCrag from '../../../hooks/useCrag';
-import { Outlet, Link } from 'react-router';
+import { Link } from 'react-router';
 import MyCragSkeleton from './MyCragSkeleton';
 import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
 
 export default function MyCrags() {
     const { crags, loading, error, removeCrag } = useCrag();
-    console.log(error)
 
     const handleRemove = async (cragId) => {
         await removeCrag(cragId);
@@ -35,7 +34,7 @@ export default function MyCrags() {
                         <h1>My crags</h1>
                     </div>
 
-                    <Link to="add" className={styles.addButton}>
+                    <Link to="/my-crags/add" className={styles.addButton}>
                         <span aria-hidden="true">+</span> Add custom crag
                     </Link>
                 </header>

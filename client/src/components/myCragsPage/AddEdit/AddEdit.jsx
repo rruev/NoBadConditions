@@ -50,7 +50,7 @@ export default function AddEdit() {
 
     const handleRemove = async () => {
         await removeCrag(cragId);
-        navigate('/mycrags');
+        navigate('/my-crags');
     };
 
     const handleCloseRemove = () => {
@@ -76,14 +76,14 @@ export default function AddEdit() {
         } else {
             await addCrag(formData);
         }
-        navigate('/mycrags');
+        navigate('/my-crags');
     };
 
     return (
         <section className={styles.page}>
             <div className={styles.panel}>
 
-                <Link to="/mycrags" className={styles.back}>
+                <Link to="/my-crags" className={styles.back}>
                     <span aria-hidden="true">←</span> Back to my crags
                 </Link>
 
@@ -192,7 +192,7 @@ export default function AddEdit() {
 
                     <div className={styles.actions}>
                         <SubmitButton type={isEdit ? 'edit' : 'add'} disabled={error} />
-                        <Link to="/mycrags" className={styles.secondary}>Cancel</Link>
+                        <Link to="/my-crags" className={styles.secondary}>Cancel</Link>
                     </div>
                     {serverError && serverError.general && <p className={sharedStyles.error}>{serverError.general}</p>}
                 </form>

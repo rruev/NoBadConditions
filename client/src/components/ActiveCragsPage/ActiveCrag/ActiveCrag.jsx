@@ -12,7 +12,7 @@ export default function ActiveCrag({
     const { fetchAndSetConditions } = useConditions();
 
     const { bestHour, averageScore } = getDailyStats(conditions, dayIndex);
-    const page = 'activecrags';
+    const page = 'active-crags';
 
     const handleCardClick = async (latitude, longitude, name, city, country) => {
         await fetchAndSetConditions(latitude, longitude, name, city, country, page);

@@ -38,8 +38,8 @@ function App() {
                         </Route>
 
                         <Route element={<IsAuthenticated />}>
-                            <Route path="/activecrags" element={<ActiveCrags />} />
-                            <Route path="/mycrags" element={<PageOutlet />} >
+                            <Route path="/active-crags" element={<ActiveCrags />} />
+                            <Route path="/my-crags" element={<PageOutlet />} >
                                 <Route index element={<MyCrags />} />
                                 <Route path="add" element={<AddEdit />} />
                                 <Route path=":cragId" element={<AddEdit />} />

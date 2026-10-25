@@ -38,8 +38,8 @@ export default function Header() {
                             <NavLink to="/" end className={navLinkClass} onClick={closeMenu}>Home</NavLink>
                             {user ? (
                                 <>
-                                    <NavLink to="/activecrags" className={navLinkClass} onClick={closeMenu}>ActiveCrags</NavLink>
-                                    <NavLink to="/mycrags" className={navLinkClass} onClick={closeMenu}>MyCrags</NavLink>
+                                    <NavLink to="/active-crags" className={navLinkClass} onClick={closeMenu}>ActiveCrags</NavLink>
+                                    <NavLink to="/my-crags" className={navLinkClass} onClick={closeMenu}>MyCrags</NavLink>
                                 </>
                             ) : (
                                 <>

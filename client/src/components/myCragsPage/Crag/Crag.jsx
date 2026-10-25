@@ -23,7 +23,7 @@ export default function Crag({
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
-    const page = 'mycrags';
+    const page = 'my-crags';
 
     const handleCardClick = async () => {
         await fetchAndSetConditions(latitude, longitude, name, city, country, page);

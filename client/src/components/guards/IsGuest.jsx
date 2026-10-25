@@ -5,7 +5,7 @@ export default function IsGuest() {
     const { user } = useUser();
 
     if (user) {
-        return <Navigate to="/activecrags" />;
+        return <Navigate to="/active-crags" />;
     }
 
     return <Outlet />;

@@ -17,8 +17,8 @@ Check the climbing conditions for any climbing crag in the world or create an ac
 
 ### Authenticated User
 
-* Access to the Home page `/`, Result page `/result/:page`, MyCrags page `/my-crags` and ActiveCrags page `/active-crags.
-* Access to the Add crag page `my-crags/add` and Detalils/Edit page `/my-crags/:cragId`.
+* Access to the Home page `/`, Result page `/result/:page`, MyCrags page `/my-crags` and ActiveCrags page `/active-crags`.
+* Access to the Add crag page `/my-crags/add` and Detalils/Edit page `/my-crags/:cragId`.
 * Users can create custom crags as well as edit and delete the ones the have created.
 * From their crags users, can add or remove crags from their active crags list (The places that they actively climb)
 
@@ -52,13 +52,13 @@ I implemented the route guards as layout routes with components that render `<Ou
 
 ### Nested & Parameterized Routes
 
-* Nested routes in `my-crags`
+* Nested routes in `/my-crags`
     - index route - list of user's crags
     - `/add` - add a crag
     - `/:cragId` - edit or delete a crag
 * Parameterized routes
-    - `my-crags/:cragId` - see and edit the information for the crag with the corresponding `cragId`
-    - `result/:page` - displays the conditions for a crag. `page` holds the page that the user came from, so they can navigate back to it.
+    - `/my-crags/:cragId` - see and edit the information for the crag with the corresponding `cragId`
+    - `/result/:page` - displays the conditions for a crag. `page` holds the page that the user came from, so they can navigate back to it.
 
 # List -> Details Flow
 
@@ -185,9 +185,9 @@ Component are styled using CSS Modules. The CSS is AI Generated
 # Error & Edge Case Handling
 
 ### Authentication errors
-- **Not logged in:** the API's `isAuthenticated` middleware returns `401` for protected routes. On the client, the `IsAuthenticated` guard redirects guests who open `/mycrags` or `/activecrags` to `/login`.
+- **Not logged in:** the API's `isAuthenticated` middleware returns `401` for protected routes. On the client, the `IsAuthenticated` guard redirects guests who open `/my-crags` or `/active-crags` to `/login`.
 - **Invalid or expired token:** the API clears the `auth-token` cookie and responds with `Invalid token.`
-- **Logged-in users on guest pages:** the `IsGuest` guard redirects logged-in users away from `/login` and `/register` to `/activecrags`.
+- **Logged-in users on guest pages:** the `IsGuest` guard redirects logged-in users away from `/login` and `/register` to `/active-crags`.
 - **Failed login or registration:** the server's error messages are  and shown in the form, and are cleared when the user edits the form or leaves the page.
 
 ### Network or data errors
@@ -199,7 +199,7 @@ Component are styled using CSS Modules. The CSS is AI Generated
 ### Empty or missing data
 - **No crags:** My Crags shows "You don't have any crags yet. Add your first crag from the button above."
 - **No active crags:** Active Crags shows "You don't have any active crags yet" with a link to My Crags.
-- **No conditions:** if someone opens `/result/:page` directly or refreshes the page with no loaded conditions, `ResultPageGuard` redirects to `/activecrags` for logged-in users and to `/` for guests.
+- **No conditions:** if someone opens `/result/:page` directly or refreshes the page with no loaded conditions, `ResultPageGuard` redirects to `/active-crags` for logged-in users and to `/` for guests.
 - **Unknown routes:** a custom 404 page with links back to home and My Crags.
 
 
