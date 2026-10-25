@@ -7,7 +7,7 @@ export const userLogInSchema = z.object({
 
 export const userRegisterSchema = z.object({
   email: z.email({ message: 'Invalid email address' }).trim().toLowerCase(),
-  password: z.string().min(3, { message: 'Password must be at least 3 characters long' }),
+  password: z.string().min(6, { message: 'Password must be at least 6 characters long' }),
   confirmPassword: z.string()
 }).refine((data) => data.password === data.confirmPassword, {
   message: 'Passwords do not match',
