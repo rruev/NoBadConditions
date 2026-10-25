@@ -1,5 +1,5 @@
 # NoBadConditions 
-## https://no-bad-conditions.vercel.app/
+## https://no-bad-conditions.vercel.app
 
 ### Wheather app for assessing rock climbing conditions
 
