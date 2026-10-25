@@ -24,15 +24,7 @@ export default function Register() {
         clearError();
     }, [clearError]);
 
-    const errorMessage = (field) => {
-        if (touched[field] && error && error[field] ) {
-            return <p className={sharedStyles.error}>{error[field]}</p>
-        } else if (serverError && serverError[field]) {
-            return <p className={sharedStyles.error}>{serverError[field]}</p>
-        }
-        return null;
-    }
-
+    
     const handleChange = (e) => {
         setData({
             ...data,
@@ -44,6 +36,15 @@ export default function Register() {
         await validateInput(e, data);
     }
 
+    const errorMessage = (field) => {
+        if (touched[field] && error && error[field] ) {
+            return <p className={sharedStyles.error}>{error[field]}</p>
+        } else if (serverError && serverError[field]) {
+            return <p className={sharedStyles.error}>{serverError[field]}</p>
+        }
+        return null;
+    }
+    
     const handleSubmit = async () => {
         const user = await register(data);
         if (user) {

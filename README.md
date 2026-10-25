@@ -201,3 +201,161 @@ Component are styled using CSS Modules. The CSS is AI Generated
 - **No active crags:** Active Crags shows "You don't have any active crags yet" with a link to My Crags.
 - **No conditions:** if someone opens `/result/:page` directly or refreshes the page with no loaded conditions, `ResultPageGuard` redirects to `/activecrags` for logged-in users and to `/` for guests.
 - **Unknown routes:** a custom 404 page with links back to home and My Crags.
+
+# Brief documentation
+
+## Tech Stack
+
+**Client:** React 19, Vite, React Router, CSS Modules, Zod, Leaflet / React Leaflet
+
+**API:** Node.js, Express 5, Prisma, PostgreSQL, JWT (stored in an HttpOnly cookie), bcrypt, Zod, Open-Meteo weather data
+
+## Getting Started
+
+### Prerequisites
+- Node.js
+- A PostgreSQL database
+
+### 1. API
+```bash
+cd api
+npm install          # also runs `prisma generate`
+npx prisma migrate deploy
+npm run dev          
+```
+
+Create `api/.env`:
+
+| Variable | Purpose |
+|---|---|
+| `DATABASE_URL` | PostgreSQL connection string |
+| `JWT_SECRET` | Secret used to sign auth tokens |
+| `OPEN_METEO_URL` | https://api.open-meteo.com/v1/forecast |
+| `CLIENT_URL` | Client origin allowed by CORS (default `http://localhost:5173`) |
+| `PORT` | Optional, defaults to `3000` |
+
+### 2. Client
+```bash
+cd client
+npm install
+npm run dev          
+```
+
+Create `client/.env`:
+
+| Variable | Purpose |
+|---|---|
+| `VITE_API_URL` | API base URL (default `http://localhost:3000/api/v1`) |
+
+### Other client scripts
+- `npm run build` builds for production
+- `npm run preview` previews the production build
+
+## Client architecture
+
+```text
+client/
+│
+├── src/
+│   │
+│   ├── main.jsx
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   │
+│   ├── components/
+│   │   │
+│   │   ├── authentication/
+│   │   │   ├── LogIn/
+│   │   │   │   ├── LogIn.jsx
+│   │   │   │   └── LogIn.module.css
+│   │   │   └── Register/
+│   │   │       ├── Register.jsx
+│   │   │       └── Register.module.css
+│   │   │
+│   │   ├── homePage/
+│   │   │   ├── Home/            (Home.jsx, HomeSkeleton.jsx, Home.module.css)
+│   │   │   ├── Hero/            (Hero.jsx, Hero.module.css)
+│   │   │   ├── SearchCrag/      (SearchCrag.jsx, SearchCrag.module.css)
+│   │   │   ├── SearchField/     (SearchField.jsx, SearchField.module.css)
+│   │   │   ├── LocationFields/  (LocationFields.jsx, LocationFields.module.css)
+│   │   │   ├── Map/             (Map.jsx, LocationMarker.jsx, Map.module.css)
+│   │   │   └── FeaturesInfo/    (FeaturesInfo.jsx, FeaturesInfo.module.css)
+│   │   │
+│   │   ├── myCragsPage/
+│   │   │   ├── PageOutlet.jsx
+│   │   │   ├── MyCrags/         (MyCrags.jsx, MyCragSkeleton.jsx, MyCrags.module.css, MyCragSkeleton.module.css)
+│   │   │   ├── Crag/            (Crag.jsx, Crag.module.css)
+│   │   │   └── AddEdit/         (AddEdit.jsx, AddEdit.module.css)
+│   │   │
+│   │   ├── ActiveCragsPage/
+│   │   │   ├── ActiveCrags/     (ActiveCrags.jsx, ActiveCragSkeleton.jsx, + .module.css files)
+│   │   │   └── ActiveCrag/      (ActiveCrag.jsx, ActiveCrag.module.css)
+│   │   │
+│   │   ├── resultPage/
+│   │   │   ├── Result/          (Result.jsx, Result.module.css)
+│   │   │   ├── ResultSkeleton/
+│   │   │   ├── ResultHeader/
+│   │   │   ├── ResultOverview/
+│   │   │   ├── ScoreOverview/
+│   │   │   ├── CurrentWeather/
+│   │   │   ├── ResultChart/
+│   │   │   └── ResultHourDetails/   (each: Component.jsx + Component.module.css)
+│   │   │
+│   │   ├── layout/
+│   │   │   ├── Header/          (Header.jsx, HeaderSkeleton.jsx, Header.module.css)
+│   │   │   └── Footer/          (Footer.jsx, Footer.module.css)
+│   │   │
+│   │   ├── guards/
+│   │   │   ├── IsAuthenticated.jsx
+│   │   │   ├── IsGuest.jsx
+│   │   │   └── ResultPageGuard.jsx
+│   │   │
+│   │   └── ui/
+│   │       ├── ErrorMessage/    (ErrorMessage.jsx, .module.css)
+│   │       ├── NotFound/        (NotFound.jsx, .module.css)
+│   │       ├── Remove/          (Remove.jsx, .module.css)
+│   │       └── SubmitButton/    (SubmitButton.jsx, .module.css)
+│   │
+│   ├── context/
+│   │   ├── UserContext.jsx
+│   │   └── ConditionsContext.jsx
+│   │
+│   ├── hooks/
+│   │   ├── useUser.js
+│   │   ├── useConditions.js
+│   │   ├── useCrag.js
+│   │   ├── useActiveCrag.js
+│   │   ├── usePublicCrags.js
+│   │   └── useValidate.js
+│   │
+│   ├── services/
+│   │   ├── index.js
+│   │   ├── user.service.js
+│   │   ├── crag.service.js
+│   │   ├── activeCrag.service.js
+│   │   ├── publicCrag.service.js
+│   │   └── conditions.service.js
+│   │
+│   ├── schemas/
+│   │   ├── user.schema.js
+│   │   └── crag.schema.js
+│   │
+│   ├── utils/
+│   │   ├── errors.util.js
+│   │   ├── location.utils.js
+│   │   ├── results.util.js
+│   │   └── leafletIcon.util.js
+│   │
+│   └── styles/
+│       └── shared.module.css
+│
+├── index.html
+├── vite.config.js
+├── eslint.config.js
+├── vercel.json
+├── package.json
+└── .env
+```
+
+Components render the UI, hooks hold state and data logic, and services make the HTTP requests. Components never call `fetch` directly.
