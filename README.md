@@ -199,5 +199,7 @@ Component are styled using CSS Modules. The CSS is AI Generated
 ### Empty or missing data
 - **No crags:** My Crags shows "You don't have any crags yet. Add your first crag from the button above."
 - **No active crags:** Active Crags shows "You don't have any active crags yet" with a link to My Crags.
-- **No conditions:** if someone opens `/result/:page` directly (for example after a refresh) with no loaded conditions, `ResultPageGuard` redirects to `/activecrags` for logged-in users and to `/` for guests.
-- **Unknown routes:** a custom 404 page offers links back to home and My Crags.
+- **No conditions:** if someone opens `/result/:page` directly or refreshes the page with no loaded conditions, `ResultPageGuard` redirects to `/activecrags` for logged-in users and to `/` for guests.
+- **Unknown routes:** a custom 404 page with links back to home and My Crags.
+
+! Disclaimer - In production when you are anywhere in the app except for the home page when you reload the page Vercel displays 404 NOT_FOUND error. I couldn't find a solution.
