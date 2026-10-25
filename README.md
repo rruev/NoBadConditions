@@ -155,7 +155,7 @@ To see and manages their crags the user must be logged in. The client sends requ
     - ***LogIn.jsx*** - `login`, `error`, `clearError`
     - ***Register.jsx*** - `register`, `error`, `clearError`
     - ***Home.jsx*** - `userLoading`
-    - ***IsAuthenticated.jsx***, ***IsGest.jsx*** - `user`
+    - ***IsAuthenticated.jsx***, ***IsGest.jsx***, ***ResultPageGuard.jsx*** - `user`, `userLoading`
 
 * `ConditionsContext` - keeps the conditions data and the relevant state. It is consumed by:
     - ***SearchCrag.jsx***, ***Crag.jsx***, ***ActiveCrag.jsx*** - `fetchAndSetConditions`
