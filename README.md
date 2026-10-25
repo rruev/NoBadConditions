@@ -177,8 +177,8 @@ Component are styled using CSS Modules. The CSS is AI Generated
 * Logged in user
     1. After register or log in the user is navigated to the **ActiveCrags** page.
     2. This page displays the crags the user has added to their active list, which are the places they actively climb at. The user can compare the crags' conditions and score side by side for each of the next seven days and decide where and when to go climbing.
-    3. The user can see the weather for one of the crags or to remove it from the list.
-    4. If the user wants to add another crag to the list or the don't have one yet They can click "Add to active crags" or go to "MyCrags" page.
+    3. The user can see the weather for one of the crags or remove it from the list.
+    4. If the user wants to add another crag to the list or they don't have one yet They can click "Add to active crags" or go to "MyCrags" page.
     5. On this page the user can see the crags that he has added, add another crag, edit existing crag, delete a crag or add or remove crag from their active crags list.
     6. The user can click on a crag to see the weather for it.
 
