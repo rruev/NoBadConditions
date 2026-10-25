@@ -67,6 +67,49 @@
         0 0 0 3px rgba(79, 169, 154, 0.12);
 }
 
+.input-wrap input[aria-invalid="true"] {
+    border-color: rgba(255, 107, 107, 0.7);
+}
+
+.input-wrap input[aria-invalid="true"]:focus {
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
+}
+
+.error {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+
+    margin-top: 8px;
+    padding: 9px 12px;
+
+    border: 1px solid rgba(255, 107, 107, 0.35);
+    border-radius: var(--radius-md);
+
+    background: rgba(255, 107, 107, 0.1);
+    color: #ff8a8a;
+
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.error span {
+    flex: none;
+
+    width: 18px;
+    height: 18px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 107, 107, 0.2);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
 @media (max-width: 560px) {
     .input-wrap input {
         height: 50px;

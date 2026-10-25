@@ -22,6 +22,10 @@ export const ConditionsProvider = ({ children }) => {
     const navigate = useNavigate();
 
     const fetchAndSetConditions = useCallback(async (lat, lon, cragName="", city="", country="", page) => {
+        if (!lat || !lon) {
+            setError(new Error("Invalid location"));
+            return;
+        }
         setLoading(true);
         setError(null);
         navigate(`/result/${page}`);
@@ -35,18 +39,22 @@ export const ConditionsProvider = ({ children }) => {
         }
     }, [setConditions, setLoading, setError]);
 
+    const clearError = useCallback(() => setError(null), [setError]); 
+
     const contextValue = useMemo(() => ({
         conditions,
         setConditions,
         loading,
         error,
-        fetchAndSetConditions
+        fetchAndSetConditions,
+        clearError
     }), [
         conditions,
         setConditions,
         loading, 
         error, 
-        fetchAndSetConditions
+        fetchAndSetConditions,
+        clearError
     ]);
 
     return (

@@ -1,10 +1,12 @@
-import { isValidCoordinates } from '../../../utils/location.utils';
 import styles from './LocationFields.module.css';
+import { isValidCoordinates } from '../../../utils/location.utils';
 import { useEffect, useState } from 'react';
 export default function LocationFields({
     lat,
     lon,
-    handleLocationChange
+    handleLocationChange,
+    error,
+    clearError
 }) {
     const [inputValue, setInputValue] = useState('');
 
@@ -13,6 +15,7 @@ export default function LocationFields({
     }, [lat, lon]);
 
     const handleChange = (event) => {
+        clearError();
         setInputValue(event.target.value);
 
         if (!event.target.value.includes(',')) return;
@@ -44,9 +47,17 @@ export default function LocationFields({
                         placeholder="latitude, longitude"
                         value={inputValue}
                         onChange={handleChange}
+                        aria-invalid={Boolean(error)}
                     />
 
                 </div>
+
+                {error && (
+                    <p className={styles.error} role="alert">
+                        <span aria-hidden="true">!</span>
+                        {error.message}
+                    </p>
+                )}
 
             </div>
 
