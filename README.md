@@ -1,5 +1,5 @@
 # NoBadConditions 
-## https://no-bad-conditions.vercel.app/
+## https://no-bad-conditions.vercel.app
 
 ### Wheather app for assessing rock climbing conditions
 
@@ -201,6 +201,7 @@ Component are styled using CSS Modules. The CSS is AI Generated
 - **No active crags:** Active Crags shows "You don't have any active crags yet" with a link to My Crags.
 - **No conditions:** if someone opens `/result/:page` directly or refreshes the page with no loaded conditions, `ResultPageGuard` redirects to `/activecrags` for logged-in users and to `/` for guests.
 - **Unknown routes:** a custom 404 page with links back to home and My Crags.
+
 
 # Brief documentation
 
