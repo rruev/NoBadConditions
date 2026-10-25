@@ -7,7 +7,7 @@ import SearchField from '../SearchField/SearchField';
 import useConditions from '../../../hooks/useConditions';
 
 export default function SearchCrag() {
-    const { fetchAndSetConditions, error, clearError } = useConditions();
+    const { fetchAndSetConditions, error, setError } = useConditions();
     const [showLocationFields, setShowLocationFields] = useState(true);
     const [location, setLocation] = useState({ lat: null, lon: null });
     const [cragName, setCragName] = useState('');
@@ -51,13 +51,14 @@ export default function SearchCrag() {
             </div>
 
 
-            {showLocationFields ? <LocationFields {...location} handleLocationChange={handleLocationChange} error={error} clearError={clearError} /> : <SearchField handleSelectCrag={handleLocationChange} />}
+            {showLocationFields ? <LocationFields {...location} handleLocationChange={handleLocationChange} error={error} setError={setError} /> : <SearchField handleSelectCrag={handleLocationChange} />}
 
             <Map location={location} handleLocationChange={handleLocationChange} />
 
             <button
                 className={styles.submit}
                 type="button"
+                disabled={error}
                 onClick={handleShowConditions}
             >
                 Show climbing conditions

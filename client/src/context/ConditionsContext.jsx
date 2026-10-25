@@ -39,22 +39,20 @@ export const ConditionsProvider = ({ children }) => {
         }
     }, [setConditions, setLoading, setError]);
 
-    const clearError = useCallback(() => setError(null), [setError]); 
-
     const contextValue = useMemo(() => ({
         conditions,
         setConditions,
         loading,
         error,
         fetchAndSetConditions,
-        clearError
+        setError
     }), [
         conditions,
         setConditions,
         loading, 
         error, 
         fetchAndSetConditions,
-        clearError
+        setError
     ]);
 
     return (

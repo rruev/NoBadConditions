@@ -6,23 +6,30 @@ export default function LocationFields({
     lon,
     handleLocationChange,
     error,
-    clearError
+    setError
 }) {
     const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
+        setError(null);
         setInputValue((lat && lon) ? `${lat}, ${lon}` : '');
-    }, [lat, lon]);
-
+    }, [lat, lon, setError]);
+    
     const handleChange = (event) => {
-        clearError();
+        setError(null);
         setInputValue(event.target.value);
-
-        if (!event.target.value.includes(',')) return;
-
+        
+        if (!event.target.value.includes(',')) {
+            setError(new Error("Coordinates must be in 'lat, lon' format. There should be a coma separating them."));
+            return;
+        };
+        
         const [newLat, newLon] = event.target.value.split(',').map(v => parseFloat(v.trim()));
-
-        if (!isValidCoordinates(newLat, newLon)) return;
+        
+        if (!isValidCoordinates(newLat, newLon)) {
+            setError(new Error("Invalid coordinates"));
+            return;
+        }
 
         handleLocationChange(newLat, newLon);
     };
@@ -60,53 +67,6 @@ export default function LocationFields({
                 )}
 
             </div>
-
-
-            {/* <div className={styles.field}>
-
-                <label htmlFor="longitude">
-                    Longitude
-                </label>
-
-                <div className={styles['input-wrap']}>
-
-                    <span>⌖</span>
-
-                    <input
-                        id="longitude"
-                        type="number"
-                        step="any"
-                        placeholder="e.g. 13.0550"
-                        value={lon}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-
-                </div>
-
-            </div> */}
-
-
-            {/* <div className={styles.field}>
-
-                <label htmlFor="elevation">
-                    Elevation (m)
-                </label>
-
-                <div className={styles['input-wrap']}>
-
-                    <span>△</span>
-
-                    <input
-                        id="elevation"
-                        type="number"
-                        step="1"
-                        placeholder="e.g. 1200"
-                    />
-
-                </div>
-
-            </div> */}
 
         </div>
     );
