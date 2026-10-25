@@ -84,7 +84,7 @@ I implemented the route guards as layout routes with components that render `<Ou
 * When **Edit** button is clicked navigation is triggered via the `useNavigate` hook.
 * The route parameter contains the ID of the clicked crag - `/my-crags/:cragId`.
 
-# Data Source & Backed
+# Data Source & Backend
 
 ### Backend type 
  
