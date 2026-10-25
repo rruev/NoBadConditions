@@ -13,28 +13,32 @@ export default function useCrag(cragId, isEdit) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const getAllCrags = async () => {
+    const getAllCrags = async (signal) => {
         setLoading(true);
         setError(null);
         try {
-            const data = await cragService.getAll();
+            const data = await cragService.getAll(signal);
             setCrags(data);
         } catch (err) {
+            if (err.name === 'AbortError') return;
             setError(err);
         } finally {
+            if (signal && signal.aborted) return;
             setLoading(false);
         }
     };
 
-    const getCrag = async () => {
+    const getCrag = async (signal) => {
         setLoading(true);
         setError(null);
         try {
-            const data = await cragService.getById(cragId);
+            const data = await cragService.getById(cragId, signal);
             setCrag(data);
         } catch (err) {
+            if (err.name === 'AbortError') return;
             setError(err);
         } finally {
+            if (signal && signal.aborted) return;
             setLoading(false);
         }
     };
@@ -90,13 +94,17 @@ export default function useCrag(cragId, isEdit) {
 
     useEffect(() => {
         if (isEdit === false ) return;
+
+        const controller = new AbortController();
+        const signal = controller.signal;
+
         if (cragId) {
-            getCrag();
-            return;
+            getCrag(signal);
+        } else {
+            getAllCrags(signal);
         }
-        getAllCrags();
         return () => {
-            //abort
+            controller.abort();
         };
     }, [cragId]);
 

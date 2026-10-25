@@ -2,12 +2,13 @@ import { getErrors } from '../utils/errors.util.js';
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api/v1";
 
-export const getAll = async () => {
+export const getAll = async (signal) => {
     const response = await fetch(`${API_URL}/active-crags`, {
         headers: {
             'Content-Type': 'application/json'
         },
-        credentials: 'include'
+        credentials: 'include',
+        signal
     });
     if (!response.ok) {
         throw new Error(getErrors(response));

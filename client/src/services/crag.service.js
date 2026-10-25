@@ -2,10 +2,11 @@ import { getErrors } from '../utils/errors.util';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
 
-export const getAll = async () => {
+export const getAll = async (signal) => {
     const response = await fetch(`${API_URL}/crags`, {
         method: 'GET',
-        credentials: 'include'
+        credentials: 'include',
+        signal
     });
     if (!response.ok) {
         throw await getErrors(response);
@@ -13,10 +14,11 @@ export const getAll = async () => {
     return response.json();
 }
 
-export const getById = async (cragId) => {
+export const getById = async (cragId, signal) => {
     const response = await fetch(`${API_URL}/crags/${cragId}`, {
         method: 'GET',
-        credentials: 'include'
+        credentials: 'include',
+        signal
     });
     if (!response.ok) {
         throw await getErrors(response);

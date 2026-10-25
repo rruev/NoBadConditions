@@ -6,14 +6,16 @@ export default function useActiveCrag(initialFetch = false) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const fetchActiveCrags = async () => {
+    const fetchActiveCrags = async (signal) => {
         try {
             setLoading(true);
-            const data = await activeCragService.getAll();
+            const data = await activeCragService.getAll(signal);
             setActiveCrags(data);
         } catch (err) {
+            if (err.name === 'AbortError') return;
             setError(err);
         } finally {
+            if (signal && signal.aborted) return;
             setLoading(false);
         }
     };
@@ -44,14 +46,13 @@ export default function useActiveCrag(initialFetch = false) {
 
 
     useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal;
         if (initialFetch) {
-            fetchActiveCrags();
+            fetchActiveCrags(signal);
         }
         return () => {
-            //abort
-            setActiveCrags([]);
-            setLoading(true);
-            setError(null);
+            controller.abort();
         }
     }, [initialFetch]);
 
