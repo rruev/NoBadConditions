@@ -68,13 +68,13 @@
 	padding: 0 24px 24px;
 }
 
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
 	.dailyCards {
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
-}
+} */
 
-@media (max-width: 520px) {
+@media (max-width: 820px) {
 	.dailySection {
 		border-radius: 8px;
 	}
@@ -84,7 +84,21 @@
 	}
 
 	.dailyCards {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
+		display: flex;
+		gap: 10px;
+
 		padding: 0 16px 18px;
+		overflow-x: auto;
+
+		scroll-snap-type: x proximity;
+		scroll-padding: 0 16px;
+		scrollbar-width: thin;
+		scrollbar-color: var(--border) transparent;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.dailyCards>* {
+		flex: 0 0 96px;
+		scroll-snap-align: start;
 	}
 }

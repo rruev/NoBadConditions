@@ -17,12 +17,18 @@ export default function ResultDaily({
     const canGoPrevious = firstDayIndex > 0;
     const canGoNext = firstDayIndex < maxFirstDayIndex;
 
-    const showPrevious = () => setFirstDayIndex((index) => Math.max(index - 4, 0));
-    const showNext = () => setFirstDayIndex((index) => Math.min(index + 4, maxFirstDayIndex));
+    const showPrevious = () => { 
+        if (firstDayIndex === maxFirstDayIndex) return setFirstDayIndex((index) => Math.max(index - 5, 0));
+        setFirstDayIndex((index) => Math.max(index - 7, 0))
+     };
+    const showNext = () => {
+        if (firstDayIndex === 0) return setFirstDayIndex(4);
+        setFirstDayIndex((index) => Math.min(index + 7, maxFirstDayIndex))
+    };
 
     const visibleConditions = dailyConditions.slice(firstDayIndex, firstDayIndex + VISIBLE_DAYS);
 
-    return(
+    return (
         <section className={styles.dailySection} aria-labelledby="daily-title">
             <div className={styles.dailyHeader}>
                 <div>

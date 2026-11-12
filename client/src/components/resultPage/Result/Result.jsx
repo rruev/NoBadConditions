@@ -56,15 +56,15 @@ export default function Result() {
                     <>
                         <ResultHeader name={conditions.cragName} city={conditions.city} country={conditions.country} />
 
-                        <ResultOverview bestHour={bestHour} averageScore={averageScore} currentWeather={conditions.current} />
+                        {/* <ResultOverview bestHour={bestHour} averageScore={averageScore} currentWeather={conditions.current} /> */}
+
+                        <ResultDaily dailyConditions={conditions.daily} />
 
                         <ScoreOverview
                             bestHour={bestHour}
                             averageScore={averageScore}
                             day={days[dayIndex]}
                         />
-
-                        <ResultDaily dailyConditions={conditions.daily} /> 
 
                         <ResultChart
                             hourlyForecast={conditions.hourly}
