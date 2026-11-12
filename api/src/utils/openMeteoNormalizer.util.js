@@ -40,6 +40,8 @@ export const normalizeWeatherData = (response) => {
             ),
             temperature_2m_max: daily.variables(0).valuesArray(),
             temperature_2m_min: daily.variables(1).valuesArray(),
+            precipitation_sum: daily.variables(2).valuesArray(),
+            cloud_cover_mean: daily.variables(3).valuesArray(),
         },
         current: {
             time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
@@ -67,6 +69,8 @@ const getDailyData = (data) => {
             date: date.toLocaleDateString('en-GB'),
             temperature_max: data.daily.temperature_2m_max[index].toFixed(1),
             temperature_min: data.daily.temperature_2m_min[index].toFixed(1),
+            precipitation_sum: data.daily.precipitation_sum[index].toFixed(1),
+            cloud_cover_mean: data.daily.cloud_cover_mean[index].toFixed(1),
         };
     });
     return dailyData;

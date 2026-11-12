@@ -7,7 +7,9 @@ export const getWeatherData = async (lat, lon) => {
         longitude: lon,
         daily: [
             "temperature_2m_max", 
-            "temperature_2m_min"
+            "temperature_2m_min",
+            "precipitation_sum",
+            "cloud_cover_mean"
         ],
         hourly: [
             "temperature_2m",
@@ -25,7 +27,8 @@ export const getWeatherData = async (lat, lon) => {
             "wind_gusts_10m"],
         current: ["temperature_2m", "relative_humidity_2m", "apparent_temperature", "precipitation"],
         timezone: "auto",
-        forecast_days: 7,
+        forecast_days: 16,
+        past_days: 7
     };
     const url = process.env.OPEN_METEO_URL;
 

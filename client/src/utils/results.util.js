@@ -6,11 +6,12 @@ export const getScoreLevel = (score) => {
 };
 
 export const getDate = (dayIndex) => {
-    if (dayIndex === 0) return 'Today';
-    if (dayIndex === 1) return 'Tomorrow';
+    if (dayIndex === 6) return 'Yesterday';
+    if (dayIndex === 7) return 'Today';
+    if (dayIndex === 8) return 'Tomorrow';
     const dayFormatter = new Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric' });
     const date = new Date();
-    date.setDate(date.getDate() + dayIndex);
+    date.setDate(date.getDate() + dayIndex - 7);
     return dayFormatter.format(date);
 };
 
@@ -22,7 +23,7 @@ export const get12HourForecast = (hourlyForecast, dayIndex) => {
 }
 
 export const getDailyStats = (weatherData, dayIndex) => {
-    const days = weatherData?.daily?.map((day, index) => index === 0 ? 'Today' : index === 1 ? 'Tomorrow' : getDate(index)) || [];
+    const days = weatherData?.daily?.map((day, index) => getDate(index)) || [];
     const climbingWindow = get12HourForecast(weatherData?.hourly || [], dayIndex);
     const bestHour = climbingWindow.reduce((best, hour) => hour.overallScore > (best?.overallScore ?? 0) ? hour : best, 0);
     const averageScore = (climbingWindow.reduce((sum, hour) => sum + Number(hour.overallScore), 0) / climbingWindow.length).toFixed(0);

@@ -11,7 +11,7 @@ import ActiveCrag from '../ActiveCrag/ActiveCrag';
 
 export default function ActiveCrags() {
     const { activeCrags, loading, error, removeFromActiveCrags } = useActiveCrag(true);
-    const [dayIndex, setDayIndex] = useState(0);
+    const [dayIndex, setDayIndex] = useState(7);
 
     const { days } = getDailyStats(activeCrags[0]?.conditions, dayIndex);
 

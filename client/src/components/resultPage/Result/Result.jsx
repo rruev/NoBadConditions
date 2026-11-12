@@ -1,4 +1,5 @@
 import styles from './Result.module.css';
+
 import { useState } from 'react';
 import useConditions from '../../../hooks/useConditions'
 
@@ -12,6 +13,7 @@ import ResultHourDetails from '../ResultHourDetails/ResultHourDetails';
 import ScoreOverview from '../ScoreOverview/ScoreOverview';
 import ResultSkeleton from '../ResultSkeleton/ResultSkeleton';
 import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
+import ResultDaily from '../ResultDaily/ResultDaily';
 
 const scoreFactors = [
     { key: 'temperature', label: 'Temperature', color: 'temperatureFactor' },
@@ -22,7 +24,7 @@ const scoreFactors = [
 
 export default function Result() {
     const { conditions, loading, error } = useConditions();
-    const [dayIndex, setDayIndex] = useState(0);
+    const [dayIndex, setDayIndex] = useState(7);
     const [selectedHourIndex, setSelectedHourIndex] = useState(10);
 
     const { page } = useParams();
@@ -61,6 +63,8 @@ export default function Result() {
                             averageScore={averageScore}
                             day={days[dayIndex]}
                         />
+
+                        <ResultDaily dailyConditions={conditions.daily} /> 
 
                         <ResultChart
                             hourlyForecast={conditions.hourly}

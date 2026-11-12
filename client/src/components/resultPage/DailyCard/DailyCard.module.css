@@ -1,0 +1,67 @@
+.dailyCard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 3px;
+
+	padding: 16px 8px 14px;
+
+	border: 1px solid var(--border);
+	border-radius: 8px;
+
+	background: var(--background-light);
+	text-align: center;
+
+	transition: border-color 160ms ease;
+}
+
+.dailyCard:hover {
+	border-color: var(--primary);
+}
+
+.date {
+	color: var(--text-muted);
+	font-size: 0.72rem;
+	font-weight: 700;
+}
+
+.cloudCover {
+	color: #f5a623;
+	font-size: 0.86rem;
+	font-weight: 600;
+}
+
+.tempMax {
+	margin-top: 6px;
+
+	color: #df6a3c;
+	font-size: 1.55rem;
+	font-weight: 650;
+	line-height: 1.1;
+}
+
+.tempMin {
+	color: #189788;
+	font-size: 0.86rem;
+	font-weight: 600;
+}
+
+.precipitation {
+	width: 100%;
+	margin-top: 10px;
+	padding-top: 10px;
+
+	border-top: 1px solid rgba(145, 165, 167, 0.16);
+
+	color: #82b9dd;
+	font-size: 0.78rem;
+	font-weight: 700;
+}
+
+.precipitation span {
+	display: block;
+
+	color: var(--text-muted);
+	font-size: 0.68rem;
+	font-weight: 500;
+}
